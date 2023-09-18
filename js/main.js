@@ -26,7 +26,21 @@ return response.json();
 
 // Process the data and log it into the console
 .then((data) => {
-    console.log(data);
+    // console.log(data);
+    const coin = Object.keys(data).map(function(key)
+    {
+        return data[key];
+    });
+
+    for (const value of coin)
+    {
+        for (let i = 0; i < 2; i++)
+        {
+            console.log(value);
+            document.getElementById('crypto-wrapper').innerHTML =
+            "<table><tr><th>" + value[i].id + "</th></tr><tr><td>Emil</td></tr><tr><td>16</td></tr></table>";
+        }
+    }
 })
 
 // Catch errors beforehand to prevent crashing of the web application
@@ -34,12 +48,12 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function displayDetails(data)
-{
-    if (data)
-    {
-        console.log('testajhdskbabmhad');
-    } 
-}
+// function displayDetails(data)
+// {
+//     if (data)
+//     {
+//         console.log('testajhdskbabmhad');
+//     } 
+// }
 
 // document.getElementById('crypto-wrapper').innerHTML = data;
