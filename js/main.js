@@ -40,8 +40,7 @@ return response.json();
             document.getElementById('crypto-wrapper').innerHTML +=
             "<table><tr><th>" + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
         }
-        document.getElementById('loading-screen').classList.add('hidden');
-        console.log('guh');
+        document.getElementById('loading-screen').style.display = "none";
     }
 })
 
