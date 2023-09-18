@@ -52,6 +52,7 @@ return response.json();
 function loadModal()
 {
     document.getElementById('modal-wrapper').style.display = "block";
+    document.getElementById('modal-wrapper').innerHTML += "test";
 }
 
 function removeModal()
