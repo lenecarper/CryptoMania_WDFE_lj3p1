@@ -38,7 +38,7 @@ return response.json();
         for (let i = 0; i < value.length; i++)
         {
             document.getElementById('crypto-wrapper').innerHTML +=
-            "<table><tr><th>" + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
+            "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td>Learn more about " + value[i].name + "</td></tr></table>";
         }
         document.getElementById('loading-screen').style.display = "none";
     }
