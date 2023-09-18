@@ -34,12 +34,14 @@ return response.json();
 
     for (const value of coin)
     {
-        for (let i = 0; i < 2; i++)
+        console.log(value);
+        for (let i = 0; i < value.length; i++)
         {
-            console.log(value);
-            document.getElementById('crypto-wrapper').innerHTML =
-            "<table><tr><th>" + value[i].id + "</th></tr><tr><td>Emil</td></tr><tr><td>16</td></tr></table>";
+            document.getElementById('crypto-wrapper').innerHTML +=
+            "<table><tr><th>" + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
         }
+        document.getElementById('loading-screen').classList.add('hidden');
+        console.log('guh');
     }
 })
 
@@ -47,13 +49,3 @@ return response.json();
 .catch((error) => {
     console.error('There was a problem with the fetch operation:', error);
 });
-
-// function displayDetails(data)
-// {
-//     if (data)
-//     {
-//         console.log('testajhdskbabmhad');
-//     } 
-// }
-
-// document.getElementById('crypto-wrapper').innerHTML = data;

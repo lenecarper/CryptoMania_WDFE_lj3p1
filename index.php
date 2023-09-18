@@ -7,7 +7,8 @@
     <title>CryptoMania</title>
 </head>
 <body>
-    <div id="crypto-wrapper">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
+    <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
+    <div id="crypto-wrapper"></div>
 </body>
 <script src="js/main.js"></script>
 </html>
