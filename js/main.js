@@ -38,7 +38,7 @@ return response.json();
         {
             document.getElementById('crypto-wrapper').innerHTML +=
             "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal(" + i + ")'>Learn more about " + value[i].name + "</td></tr></table>";
-            // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+            document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
         }
         document.getElementById('loading-screen').style.display = "none";
     }
@@ -51,9 +51,9 @@ return response.json();
 
 function loadModal(i)
 {
-        console.log(i);
-        document.getElementById('modal-wrapper').style.display = "block";
-        document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+    console.log(i);
+    document.getElementById('modal-wrapper').style.display = "block";
+    document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
 }
 
 function removeModal()
