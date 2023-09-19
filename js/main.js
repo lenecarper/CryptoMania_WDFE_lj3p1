@@ -49,13 +49,11 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function loadModal(coin)
+function loadModal(i)
 {
-    // const value = coin;
-    // let i = 3;
-    // console.log("test" + value + i);
-    document.getElementById('modal-wrapper').style.display = "block";
-    document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+        console.log(i);
+        document.getElementById('modal-wrapper').style.display = "block";
+        document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
 }
 
 function removeModal()
