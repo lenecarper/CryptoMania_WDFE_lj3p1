@@ -26,7 +26,6 @@ return response.json();
 
 // Process the data and log it into the console
 .then((data) => {
-    // console.log(data);
     const coin = Object.keys(data).map(function(key)
     {
         return data[key];
@@ -39,6 +38,7 @@ return response.json();
         {
             document.getElementById('crypto-wrapper').innerHTML +=
             "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+            document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
         }
         document.getElementById('loading-screen').style.display = "none";
     }
@@ -49,10 +49,10 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function loadModal()
+function loadModal(data)
 {
     document.getElementById('modal-wrapper').style.display = "block";
-    document.getElementById('modal-wrapper').innerHTML += "test";
+    document.getElementById('history-modal').innerHTML += "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
 }
 
 function removeModal()
