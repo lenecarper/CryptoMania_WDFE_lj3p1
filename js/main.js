@@ -51,9 +51,11 @@ return response.json();
 
 function loadModal(i)
 {
-    console.log(i);
     document.getElementById('modal-wrapper').style.display = "block";
-    document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
+
+    // api.coincap.io/v2/assets/bitcoin
+    
+    // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
 }
 
 function removeModal()
