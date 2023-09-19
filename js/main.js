@@ -1,9 +1,11 @@
 // API key and URL to call
+const cryptocurrencyId = 'bitcoin'; // Replace with the cryptocurrency you want to fetch data for
 const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
 const apiUrl = 'https://api.coincap.io/v2';
 
 // Endpoint, currently assets
-const endpoint = '/assets';
+const endpoint = `/assets`;
+// const endpoint = `/assets/${cryptocurrencyId}`;
 
 // Make the GET request
 fetch(`${apiUrl}${endpoint}`, {
