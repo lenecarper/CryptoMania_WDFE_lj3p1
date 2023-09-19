@@ -34,11 +34,11 @@ return response.json();
     for (const value of coin)
     {
         console.log(value);
-        for (let i = 0; i < value.length; i++)
+        for (let i = 1; i < value.length; i++)
         {
             document.getElementById('crypto-wrapper').innerHTML +=
-            "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
-            document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+            "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal(" + i + ")'>Learn more about " + value[i].name + "</td></tr></table>";
+            // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
         }
         document.getElementById('loading-screen').style.display = "none";
     }
@@ -49,10 +49,13 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function loadModal(data)
+function loadModal(coin)
 {
+    // const value = coin;
+    // let i = 3;
+    // console.log("test" + value + i);
     document.getElementById('modal-wrapper').style.display = "block";
-    document.getElementById('history-modal').innerHTML += "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
+    document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr><td onclick='loadModal()'>Learn more about " + value[i].name + "</td></tr></table>";
 }
 
 function removeModal()
