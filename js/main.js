@@ -129,7 +129,7 @@ function loadModal(id)
         // Remove the modal with a clickable div
         "<div id='close-modal' onclick='removeModal()'>x</div>" +
         // Load the line graph canvas in a div
-        "<div id='full-graph' style='width: 80%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
+        "<div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
 
         // Remove the loading screen once all the data is loaded
         document.getElementById('loading-screen').style.display = "none";
