@@ -65,10 +65,14 @@ function loadModal(id, i)
     const cryptocurrencyId = id; // Replace this dynamically in an on-click??
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     const apiUrl = 'https://api.coincap.io/v2';
+    // Calculate timestamps for the past week
+    const endTimestamp = Date.now();
+    // 7 days in milliseconds
+    const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1000);
 
     // Endpoint, currently assets
     // const endpoint = `/assets`;
-    const endpoint = `/assets/${cryptocurrencyId}`;
+    const endpoint = `/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`;
 
     // Make the GET request
     fetch(`${apiUrl}${endpoint}`, {
