@@ -89,19 +89,24 @@ function loadModal(id, i)
     
     // Process the data and log it into the console
     .then((data) => {
-        const coin = Object.keys(data).map(function(key)
+        const crypto = Object.keys(data).map(function(key)
         {
             return data[key];
         });
+
+        var coin = crypto[0];
         console.log(coin);
-        console.log(coin.symbol);
         document.getElementById('crypto-wrapper').innerHTML +=
         "<table>" +
         "<tr><th>$ " + coin.symbol + "</th></tr>" +
         "<tr><td>" + coin.name + "</td></tr>" +
         "<tr><td>" + coin.priceUsd + "</td></tr>" +
         "</table>";
-        document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + coin.symbol + "</th></tr><tr><td>" + coin.name + "</td></tr><tr><td>" + coin.priceUsd + "</td></tr></table>";
+        document.getElementById('history-modal').innerHTML = 
+        "<table><tr><th>$ " + coin.symbol +
+        "</th></tr><tr><td>" + coin.name +
+        "</td></tr><tr><td>" + coin.priceUsd +
+        "</td></tr></table>";
         document.getElementById('loading-screen').style.display = "none";
     })
 
