@@ -114,7 +114,7 @@ function loadModal(id, i)
         "</td></tr><tr><td>" + "Supply: " + coin.supply +
         "</td></tr></table>" +
         "<div id='close-modal' onclick='removeModal()'>x</div>" +
-        "<div style='width: 80%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
+        "<div id='full-graph' style='width: 80%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
 
         document.getElementById('loading-screen').style.display = "none";
 
@@ -166,11 +166,10 @@ function loadModal(id, i)
 
     document.getElementById('modal-wrapper').style.display = "block";
 }
+createLineChart();
+}
 
 function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
-createLineChart();
-}
-
