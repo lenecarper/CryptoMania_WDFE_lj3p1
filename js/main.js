@@ -96,7 +96,11 @@ function loadModal(id, i)
         console.log(coin);
         console.log(coin.symbol);
         document.getElementById('crypto-wrapper').innerHTML +=
-        "<table><tr><th>$ " + coin.symbol + "</th></tr><tr><td>" + coin.name + "</td></tr><tr><td>" + coin.priceUsd + "</td></tr><tr>Learn more about " + coin.name + "</td></tr></table>";
+        "<table>" +
+        "<tr><th>$ " + coin.symbol + "</th></tr>" +
+        "<tr><td>" + coin.name + "</td></tr>" +
+        "<tr><td>" + coin.priceUsd + "</td></tr>" +
+        "</table>";
         document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + coin.symbol + "</th></tr><tr><td>" + coin.name + "</td></tr><tr><td>" + coin.priceUsd + "</td></tr></table>";
         document.getElementById('loading-screen').style.display = "none";
     })
