@@ -104,3 +104,8 @@ tbody tr:hover
     color: white;
     transition: 0.3s;
 }
+
+#history-information
+{
+    width: 60%;
+}

@@ -98,18 +98,13 @@ function loadModal(id, i)
 
         var coin = crypto[0];
         console.log(coin);
-        document.getElementById('crypto-wrapper').innerHTML +=
-        "<table>" +
-        "<tr><th>$ " + coin.symbol + "</th></tr>" +
-        "<tr><td>" + coin.name + "</td></tr>" +
-        "<tr><td>" + coin.priceUsd + "</td></tr>" +
-        "</table>";
         document.getElementById('history-modal').innerHTML = 
-        "<table><tr><th>$ " + coin.symbol +
-        "</th></tr><tr><td>" + coin.name +
-        "</th></tr><tr><td>" + coin.name +
-        "</th></tr><tr><td>" + coin.name +
-        "</td></tr><tr><td>" + coin.priceUsd +
+        "<table id='history-information'><tr><th>$ " + coin.symbol +
+        "<tr><td>" + "Cryptocurrency: " + coin.name + "</td></tr>" +
+        "<tr><td>" + "Value: " + "$" + coin.priceUsd + " USD" + "</td></tr>" +
+        "<tr><td>" + "Market cap: " + "$" + coin.marketCapUsd + "</td></tr>" +
+        "<tr><td>" + "Trade volume past 24 hours: " + "$" + coin.volumeUsd24Hr + "</td></tr>" +
+        "</td></tr><tr><td>" + "Supply: " + coin.supply +
         "</td></tr></table>" +
         "<div id='close-modal' onclick='removeModal()'>x</div>";
         
