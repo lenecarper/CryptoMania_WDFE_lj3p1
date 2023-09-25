@@ -74,15 +74,18 @@ function loadModal(id, i)
     // const endpoint = `/assets`;
     const endpoint = `/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`;
 
+    async function createLineChart() {
+    try {
     // Make the GET request
     fetch(`${apiUrl}${endpoint}`, {
-    method: 'GET',
-    // Give authorization headers with the API key
-    headers:
-    {
-        'Authorization': `Bearer ${apiKey}`,
-    },
+        method: 'GET',
+        // Give authorization headers with the API key
+        headers:
+        {
+            'Authorization': `Bearer ${apiKey}`,
+        },
     })
+
 
     // Check the response the API call returns
     .then((response) => {
@@ -110,15 +113,56 @@ function loadModal(id, i)
         "<tr><td>" + "Trade volume past 24 hours: " + "$" + coin.volumeUsd24Hr + "</td></tr>" +
         "</td></tr><tr><td>" + "Supply: " + coin.supply +
         "</td></tr></table>" +
-        "<div id='close-modal' onclick='removeModal()'>x</div>";
-        
-        document.getElementById('loading-screen').style.display = "none";
-    })
+        "<div id='close-modal' onclick='removeModal()'>x</div>" +
+        "<div style='width: 80%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
 
-    // Catch errors beforehand to prevent crashing of the web application
-    .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
+        document.getElementById('loading-screen').style.display = "none";
+
+        // Extract timestamps and prices from the data
+        const timestamps = data.data.map(entry => new Date(entry.time).toLocaleDateString());
+        const prices = data.data.map(entry => parseFloat(entry.priceUsd));
+
+        // Create a line chart using Chart.js
+        const ctx = document.getElementById('cryptoChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: `${cryptocurrencyId} Price (USD)`,
+                    data: prices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                }],
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date',
+                        },
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)',
+                        },
+                    },
+                },
+            },
+        });
+    })
+}   catch (error)
+{
+    console.error('Error:', error);
+}
+
+
+    // // Catch errors beforehand to prevent crashing of the web application
+    // .catch((error) => {
+    //     console.error('There was a problem with the fetch operation:', error);
+    // });
 
     document.getElementById('modal-wrapper').style.display = "block";
 }
@@ -127,3 +171,6 @@ function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
+createLineChart();
+}
+

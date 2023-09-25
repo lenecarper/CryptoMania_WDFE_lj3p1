@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" />
     <title>CryptoMania</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
