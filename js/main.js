@@ -33,7 +33,6 @@ return response.json();
         return data[key];
     });
 
-    var cryptoWrapper = document.getElementById('crypto-wrapper');
     for (const value of coin)
     {
         console.log(value);
@@ -44,9 +43,9 @@ return response.json();
             "<tr><th>$ " + value[i].symbol + "</th></tr>" +
             "<tr><td>" + value[i].name + "</td></tr>" +
             "<tr><td>" + value[i].priceUsd + "</td></tr>" +
-            "<tr><td onclick='loadModal(" + value[i].id + ")'>Learn more about " + value[i].name + "</td></tr>" +
+            "<tr><td onclick='loadModal(" + '"' + value[i].id + '"' + ")'>Learn more about " + value[i].name + "</td></tr>" +
             "</table>";
-            document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
+            // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
         }
         document.getElementById('loading-screen').style.display = "none";
     }
@@ -57,9 +56,10 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function loadModal(id)
+function loadModal(id, i)
 {
     // API key and URL to call
+    console.log(id);
     const cryptocurrencyId = id; // Replace this dynamically in an on-click??
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     const apiUrl = 'https://api.coincap.io/v2';
@@ -93,25 +93,20 @@ function loadModal(id)
         {
             return data[key];
         });
-    
-        for (const value of coin)
-        {
-            console.log(value);
-            document.getElementById('crypto-wrapper').innerHTML +=
-            "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr><tr>Learn more about " + value[i].name + "</td></tr></table>";
-            document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
-            document.getElementById('loading-screen').style.display = "none";
-        }
+        console.log(coin);
+        console.log(coin.symbol);
+        document.getElementById('crypto-wrapper').innerHTML +=
+        "<table><tr><th>$ " + coin.symbol + "</th></tr><tr><td>" + coin.name + "</td></tr><tr><td>" + coin.priceUsd + "</td></tr><tr>Learn more about " + coin.name + "</td></tr></table>";
+        document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + coin.symbol + "</th></tr><tr><td>" + coin.name + "</td></tr><tr><td>" + coin.priceUsd + "</td></tr></table>";
+        document.getElementById('loading-screen').style.display = "none";
     })
-    
+
     // Catch errors beforehand to prevent crashing of the web application
     .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
     });
 
-
     document.getElementById('modal-wrapper').style.display = "block";
-    console.log(id);    
 }
 
 function removeModal()
