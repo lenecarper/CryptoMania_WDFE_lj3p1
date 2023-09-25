@@ -10,7 +10,7 @@
     <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
     <div id="crypto-wrapper"></div>
     <div id="modal-wrapper" style="display: none;">
-        <div id="history-modal"><div id="close-modal" onclick="removeModal()">x</div></div>
+        <div id="history-modal"></div>
         <div id="background-blur"></div>
     </div>
 </body>

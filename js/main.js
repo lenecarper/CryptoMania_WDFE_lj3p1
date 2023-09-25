@@ -42,7 +42,7 @@ return response.json();
             "<table>" +
             "<tr><th>$ " + value[i].symbol + "</th></tr>" +
             "<tr><td>" + value[i].name + "</td></tr>" +
-            "<tr><td>" + "Current value: <br>" + "$" + value[i].priceUsd + " USD" + "</td></tr>" +
+            "<tr><td>" + "Value: " + "$" + value[i].priceUsd + " USD" + "</td></tr>" +
             "<tr><td>" + "Market cap: " + "$" + value[i].marketCapUsd + "</td></tr>" +
             "<tr><td>" + "Trade volume past 24 hours: " + "$" + value[i].volumeUsd24Hr + "</td></tr>" +
             "<tr><td onclick='loadModal(" + '"' + value[i].id + '"' + ")'>Learn more about " + value[i].name + "</td></tr>" +
@@ -110,7 +110,9 @@ function loadModal(id, i)
         "</th></tr><tr><td>" + coin.name +
         "</th></tr><tr><td>" + coin.name +
         "</td></tr><tr><td>" + coin.priceUsd +
-        "</td></tr></table>";
+        "</td></tr></table>" +
+        "<div id='close-modal' onclick='removeModal()'>x</div>";
+        
         document.getElementById('loading-screen').style.display = "none";
     })
 

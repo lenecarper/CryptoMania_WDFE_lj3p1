@@ -93,6 +93,9 @@ tbody tr:hover
     text-align: right;
     margin-right: 15px;
     font-size: 40px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 #close-modal:hover
