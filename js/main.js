@@ -36,13 +36,15 @@ return response.json();
     for (const value of coin)
     {
         console.log(value);
-        for (let i = 1; i < value.length; i++)
+        for (let i = 0; i < value.length; i++)
         {
             document.getElementById('crypto-wrapper').innerHTML +=
             "<table>" +
             "<tr><th>$ " + value[i].symbol + "</th></tr>" +
             "<tr><td>" + value[i].name + "</td></tr>" +
-            "<tr><td>" + value[i].priceUsd + "</td></tr>" +
+            "<tr><td>" + "Current value: <br>" + "$" + value[i].priceUsd + " USD" + "</td></tr>" +
+            "<tr><td>" + "Market cap: " + "$" + value[i].marketCapUsd + "</td></tr>" +
+            "<tr><td>" + "Trade volume past 24 hours: " + "$" + value[i].volumeUsd24Hr + "</td></tr>" +
             "<tr><td onclick='loadModal(" + '"' + value[i].id + '"' + ")'>Learn more about " + value[i].name + "</td></tr>" +
             "</table>";
             // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
@@ -104,6 +106,8 @@ function loadModal(id, i)
         "</table>";
         document.getElementById('history-modal').innerHTML = 
         "<table><tr><th>$ " + coin.symbol +
+        "</th></tr><tr><td>" + coin.name +
+        "</th></tr><tr><td>" + coin.name +
         "</th></tr><tr><td>" + coin.name +
         "</td></tr><tr><td>" + coin.priceUsd +
         "</td></tr></table>";
