@@ -5,7 +5,6 @@ const apiUrl = 'https://api.coincap.io/v2';
 
 // Endpoint, currently assets
 const endpoint = `/assets`;
-// const endpoint = `/assets/${cryptocurrencyId}`;
 
 // Make the GET request
 fetch(`${apiUrl}${endpoint}`, {
@@ -33,22 +32,28 @@ return response.json();
         return data[key];
     });
 
+    // Loop through all the coins with the constant variable 'value'
     for (const value of coin)
     {
+        // Log the data of the currently selected coin into the console
         console.log(value);
+        // Loop through all the coins and print them into the HTML
         for (let i = 0; i < value.length; i++)
         {
+            // Add values into the crypto-wrapper tabs, replacing with template soon
             document.getElementById('crypto-wrapper').innerHTML +=
+            // Add a table with the crypto data printed into them
             "<table>" +
             "<tr><th>$ " + value[i].symbol + "</th></tr>" +
             "<tr><td>" + value[i].name + "</td></tr>" +
             "<tr><td>" + "Value: " + "$" + value[i].priceUsd + " USD" + "</td></tr>" +
             "<tr><td>" + "Market cap: " + "$" + value[i].marketCapUsd + "</td></tr>" +
             "<tr><td>" + "Trade volume past 24 hours: " + "$" + value[i].volumeUsd24Hr + "</td></tr>" +
+            // Load the modal on click, display graph and information below
             "<tr><td onclick='loadModal(" + '"' + value[i].id + '"' + ")'>Learn more about " + value[i].name + "</td></tr>" +
             "</table>";
-            // document.getElementById('history-modal').innerHTML = "<table><tr><th>$ " + value[i].symbol + "</th></tr><tr><td>" + value[i].name + "</td></tr><tr><td>" + value[i].priceUsd + "</td></tr></table>";
         }
+        // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
     }
 })
@@ -58,7 +63,10 @@ return response.json();
     console.error('There was a problem with the fetch operation:', error);
 });
 
-function loadModal(id, i)
+
+// Load the history modal, add a line chart using chart.js
+
+function loadModal(id)
 {
     // API key and URL to call
     console.log(id);
@@ -68,10 +76,9 @@ function loadModal(id, i)
     // Calculate timestamps for the past week
     const endTimestamp = Date.now();
     // 7 days in milliseconds
-    const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1000);
+    const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1200);
 
-    // Endpoint, currently assets
-    // const endpoint = `/assets`;
+    // Endpoint, fetches the crypto data through /assets/ and gets the history from the past 7 days
     const endpoint = `/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`;
 
     async function createLineChart() {
