@@ -141,6 +141,7 @@ function loadModal(id)
         // Create a line chart using Chart.js
         const ctx = document.getElementById('cryptoChart').getContext('2d');
         const chart = new Chart(ctx, {
+            // Graph options, display time, cryptocurrency price & change border (color)
             type: 'line',
             data: {
                 labels: timestamps,
@@ -151,6 +152,7 @@ function loadModal(id)
                     borderWidth: 2,
                 }],
             },
+            // Scaling options, display time and price text
             options: {
                 scales: {
                     x: {
@@ -168,15 +170,20 @@ function loadModal(id)
                 },
             },
         });
-    })}   catch (error)
+    })}
+    // Catch errors pre-emptively and log them into the console
+    catch (error)
     {
         console.error('Error:', error);
     }
+    // Display the modal
     document.getElementById('modal-wrapper').style.display = "block";
 }
+// Create the line chart by running the function
 createLineChart();
 }
 
+// Remove the modal by displaying it as none when the function is activated
 function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
