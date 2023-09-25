@@ -70,7 +70,8 @@ function loadModal(id)
 {
     // API key and URL to call
     console.log(id);
-    const cryptocurrencyId = id; // Replace this dynamically in an on-click??
+    // Get the crypto ID dynamically
+    const cryptocurrencyId = id;
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     const apiUrl = 'https://api.coincap.io/v2';
     // Calculate timestamps for the past week
@@ -81,6 +82,7 @@ function loadModal(id)
     // Endpoint, fetches the crypto data through /assets/ and gets the history from the past 7 days
     const endpoint = `/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`;
 
+    // Create the line chart with graph.js (loaded in index)
     async function createLineChart() {
     try {
     // Make the GET request
@@ -98,11 +100,12 @@ function loadModal(id)
     .then((response) => {
     if (!response.ok)
     {
+        // Throw an error message in the console if an error occurs
         throw new Error('A network error has occured.');
     }
     return response.json();
     })
-    
+
     // Process the data and log it into the console
     .then((data) => {
         const crypto = Object.keys(data).map(function(key)
@@ -110,8 +113,11 @@ function loadModal(id)
             return data[key];
         });
 
+        // Get the crypto data from the array into a 'coin' variable
         var coin = crypto[0];
+        // Log all the history data
         console.log(coin);
+        // Load a table with the past 7 days of crypto history into the modal, replacing with template soon
         document.getElementById('history-modal').innerHTML = 
         "<table id='history-information'><tr><th>$ " + coin.symbol +
         "<tr><td>" + "Cryptocurrency: " + coin.name + "</td></tr>" +
@@ -120,12 +126,15 @@ function loadModal(id)
         "<tr><td>" + "Trade volume past 24 hours: " + "$" + coin.volumeUsd24Hr + "</td></tr>" +
         "</td></tr><tr><td>" + "Supply: " + coin.supply +
         "</td></tr></table>" +
+        // Remove the modal with a clickable div
         "<div id='close-modal' onclick='removeModal()'>x</div>" +
+        // Load the line graph canvas in a div
         "<div id='full-graph' style='width: 80%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
 
+        // Remove the loading screen once all the data is loaded
         document.getElementById('loading-screen').style.display = "none";
 
-        // Extract timestamps and prices from the data
+        // Extract the datetime and prices from the API data
         const timestamps = data.data.map(entry => new Date(entry.time).toLocaleDateString());
         const prices = data.data.map(entry => parseFloat(entry.priceUsd));
 
@@ -159,18 +168,10 @@ function loadModal(id)
                 },
             },
         });
-    })
-}   catch (error)
-{
-    console.error('Error:', error);
-}
-
-
-    // // Catch errors beforehand to prevent crashing of the web application
-    // .catch((error) => {
-    //     console.error('There was a problem with the fetch operation:', error);
-    // });
-
+    })}   catch (error)
+    {
+        console.error('Error:', error);
+    }
     document.getElementById('modal-wrapper').style.display = "block";
 }
 createLineChart();
