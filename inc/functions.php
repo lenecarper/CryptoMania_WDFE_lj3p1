@@ -43,7 +43,8 @@ function registerUser($username, $password)
     }
 }
 
-if (isset($_POST['submit-register'])) {
+if (isset($_POST['submit-register']))
+{
     $username = $_POST['username-register'];
     $password = $_POST['password-register'];
 
@@ -54,6 +55,53 @@ if (isset($_POST['submit-register'])) {
     echo $registrationResult;
 }
 
+function loginUser($loginUsername, $loginPassword)
+{
+    // Connect to the MySQL database
+    $db = new mysqli('localhost', 'root', '', 'cryptomania');
 
+    // Check the connection
+    if ($db->connect_errno) {
+        return "Connection failed: " . $db->connect_error;
+    }
+
+    // Retrieve the user's hashed password from the database
+    $selectQuery = $db->prepare("SELECT `id`, `password` FROM users WHERE username = ?");
+    $selectQuery->bind_param("s", $loginUsername);
+    $selectQuery->execute();
+    $selectQuery->bind_result($userId, $hashedPassword);
+    $selectQuery->fetch();
+    $selectQuery->close();
+
+    // Check if the user was found in the database
+    if ($userId) {
+        // Verify the provided password against the stored hash
+        if (password_verify($loginPassword, $hashedPassword)) {
+            // Password is correct; you can perform additional actions here if needed.
+            $db->close();
+            header('location:index.php');
+        } else {
+            // Password is incorrect
+            $db->close();
+            return "Incorrect password.";
+        }
+    } else {
+        // User not found
+        $db->close();
+        return "User not found.";
+    }
+}
+
+if (isset($_POST['submit-login']))
+{
+    $loginUsername = $_POST['username-login'];
+    $loginPassword = $_POST['password-login'];
+
+    // Call the loginUser function with the form data
+    $loginResult = loginUser($loginUsername, $loginPassword);
+
+    // Display the result of the registration attempt
+    echo $loginResult;
+}
 
 ?>

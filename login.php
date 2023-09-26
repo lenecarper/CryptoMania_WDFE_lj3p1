@@ -12,7 +12,7 @@
   <div class="login-container">
     <div class="login-content">
       <h1 class="welcome-text">Log in to CryptoMania</h1>
-      <form class="login-form">
+      <form class="login-form" method="POST" action="login.php">
         <input type="text" placeholder="Username" class="input-field" name="username-login">
         <input type="password" placeholder="Password" class="input-field" name="password-login"><br>
         <button type="submit" class="btn-neon" name="submit-login">Login</button><br><br>
