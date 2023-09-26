@@ -1,3 +1,10 @@
+<?php require('inc/functions.php'); ?>
+
+<?php if (!$_SESSION['loggedIn'])
+{
+    header('location:login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
