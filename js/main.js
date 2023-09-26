@@ -6,6 +6,8 @@ const apiUrl = 'https://api.coincap.io/v2';
 // Endpoint, currently assets
 const endpoint = `/assets`;
 
+function fetchCoinData()
+{
 // Make the GET request
 fetch(`${apiUrl}${endpoint}`, {
   method: 'GET',
@@ -27,6 +29,17 @@ return response.json();
 
 // Process the data and log it into the console
 .then((data) => {
+    // console.log(data);
+
+    // // Get a reference to your HTML template
+    // const template = document.getElementById('crypto-template').innerHTML;
+
+    // // Use Mustache to render the data into the template
+    // const rendered = Mustache.render(template, data);
+
+    // // Display the rendered template
+    // document.getElementById('crypto-template').innerHTML = rendered;
+
     const coin = Object.keys(data).map(function(key)
     {
         return data[key];
@@ -56,12 +69,13 @@ return response.json();
         // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
     }
-})
+    })
 
-// Catch errors beforehand to prevent crashing of the web application
-.catch((error) => {
-    console.error('There was a problem with the fetch operation:', error);
-});
+    // Catch errors beforehand to prevent crashing of the web application
+    .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
 
 
 // Load the history modal, add a line chart using chart.js
@@ -188,3 +202,5 @@ function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
+
+fetchCoinData();
