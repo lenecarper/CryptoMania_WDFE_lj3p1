@@ -1,4 +1,4 @@
-<?php require('inc/functions.php'); ?>
+<?php require ('inc/functions.php'); ?>
 
 <?php if (!$_SESSION['loggedIn'])
 {

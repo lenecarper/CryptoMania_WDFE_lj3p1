@@ -11,12 +11,12 @@
 <body class="container">  
   <div class="login-container">
     <div class="login-content">
-      <h1 class="welcome-text">Log in to CryptoMania</h1>
+      <h1 class="welcome-text">Register for CryptoMania</h1>
       <form class="login-form">
-        <input type="text" placeholder="Username" class="input-field" name="username-login">
-        <input type="password" placeholder="Password" class="input-field" name="password-login"><br>
-        <button type="submit" class="btn-neon" name="submit-login">Login</button><br><br>
-        <a href="register.php" class="href">No account yet?</a>
+        <input type="text" placeholder="Username" class="input-field" name="username-register">
+        <input type="password" placeholder="Password" class="input-field" name="password-register"><br>
+        <button type="submit" class="btn-neon" name="submit-register">Register</button><br><br>
+        <a href="login.php" class="href">Already have an account?</a>
       </form>
     </div>
   </div>
