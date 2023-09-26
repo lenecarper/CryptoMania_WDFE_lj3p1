@@ -33,7 +33,7 @@ function registerUser($username, $password)
     {
         $insertQuery->close();
         $db->close();
-        return "User registered successfully.";
+        header('location:login.php');
     }
     else
     {
@@ -53,5 +53,7 @@ if (isset($_POST['submit-register'])) {
     // Display the result of the registration attempt
     echo $registrationResult;
 }
+
+
 
 ?>
