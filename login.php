@@ -13,7 +13,8 @@
       <form class="login-form">
         <input type="text" placeholder="Username" class="input-field">
         <input type="password" placeholder="Password" class="input-field"><br>
-        <button type="submit" class="btn-neon">Login</button>
+        <button type="submit" class="btn-neon">Login</button><br>
+        <a href="javascript:void(0);">No account yet?</a>
       </form>
     </div>
   </div>
