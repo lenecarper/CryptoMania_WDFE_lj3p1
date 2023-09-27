@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Mustache template for cryptocurrency data -->
-    <template id="crypto-template" type="text/template">
+    <template id="crypto-template">
         <table>
             <tr><th>$ {{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>

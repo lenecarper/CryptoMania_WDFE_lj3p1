@@ -1,5 +1,7 @@
 // API key and URL to call
-const cryptocurrencyId = 'bitcoin'; // Replace this dynamically in an on-click??
+
+// Replaced dynamically by the cryptocurrency ID
+const cryptocurrencyId = 'bitcoin';
 const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
 const apiUrl = 'https://api.coincap.io/v2';
 
