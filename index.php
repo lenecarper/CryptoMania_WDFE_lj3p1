@@ -10,9 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
     <!-- Mustache template for cryptocurrency data -->
-
     <template id="crypto-template" type="text/template">
         <table>
             <tr><th>$ {{symbol}}</th></tr>
@@ -25,7 +23,7 @@
     </template>
 
     <!-- Mustache template for the history modal -->
-    <template id="history-modal-template" type="text/template">
+    <template id="history-modal-template">
         <table id='history-information'>
             <tr><th>$ {{coin.symbol}}</th></tr>
             <tr><td>Cryptocurrency: {{coin.name}}</td></tr>
@@ -37,6 +35,7 @@
         <div id='close-modal' onclick='removeModal()'>x</div>
         <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
     </template>
+    <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
 </body>
 
 <!-- jQuery -->

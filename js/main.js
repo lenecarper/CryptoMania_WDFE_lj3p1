@@ -8,47 +8,46 @@ const endpoint = `/assets`;
 
 function fetchCoinData()
 {
-// Make the GET request
-fetch(`${apiUrl}${endpoint}`, {
-  method: 'GET',
-  // Give authorization headers with the API key
-  headers:
-  {
-    'Authorization': `Bearer ${apiKey}`,
-  },
-})
+    // Make the GET request
+    fetch(`${apiUrl}${endpoint}`, {
+    method: 'GET',
+    // Give authorization headers with the API key
+    headers:
+    {
+        'Authorization': `Bearer ${apiKey}`,
+    },
+    })
 
-// Check the response the API call returns
-.then((response) => {
-if (!response.ok)
-{
-    throw new Error('A network error has occured.');
-}
-return response.json();
-})
+    // Check the response the API call returns
+    .then((response) => {
+    if (!response.ok)
+    {
+        throw new Error('A network error has occured.');
+    }
+    return response.json();
+    })
 
-// Process the data and log it into the console
-.then((data) => {
-    const coinTemplate = document.getElementById('crypto-template').innerHTML;
-    const historyModalTemplate = document.getElementById('history-modal-template').innerHTML;
+    // Process the data and log it into the console
+    .then((data) => {
+        const coinTemplate = document.getElementById('crypto-template').innerHTML;
 
-    const renderedCoins = data.data.map((coin) => {
-        return Mustache.render(coinTemplate, coin);
-    });
-
-    document.getElementById('crypto-template').innerHTML = renderedCoins.join('');
-
-    // Remove the loading screen once the page loads
-    document.getElementById('loading-screen').style.display = "none";
-
-    // Attach click event handlers to load the history modal
-    const learnMoreLinks = document.querySelectorAll('.learn-more-link');
-    learnMoreLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-            loadModal(link.dataset.coinId);
+        const renderedCoins = data.data.map((coin) => {
+            return Mustache.render(coinTemplate, coin);
         });
-    });
-})
+
+        document.getElementById('crypto-template').innerHTML = renderedCoins.join('');
+
+        // Remove the loading screen once the page loads
+        document.getElementById('loading-screen').style.display = "none";
+
+        // Attach click event handlers to load the history modal
+        const learnMoreLinks = document.querySelectorAll('.learn-more-link');
+        learnMoreLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                loadModal(link.dataset.coinId);
+            });
+        });
+    })
 
     // Catch errors beforehand to prevent crashing of the web application
     .catch((error) => {
@@ -105,6 +104,7 @@ function loadModal(id)
             coin: data.data[0],
         };
     
+        const historyModalTemplate = document.getElementById('history-modal-template').innerHTML;
         const renderedHistoryModal = Mustache.render(historyModalTemplate, historyModalData);
     
         document.getElementById('history-modal').innerHTML = renderedHistoryModal;
