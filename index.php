@@ -23,24 +23,35 @@
     </template>
 
     <table id="crypto-overview-table">
-        <tbody></tbody>
+        <tbody>
+
+        </tbody>
     </table>
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">
+        {{#data}}
             <tr><th>$ {{coin.symbol}}</th></tr>
             <tr><td>Cryptocurrency: {{coin.name}}</td></tr>
             <tr><td>Value: ${{coin.priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{coin.marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{coin.volumeUsd24Hr}}</td></tr>
             <tr><td>Supply: {{coin.supply}}</td></tr>
-        <div id='close-modal' onclick='removeModal()'>x</div>
-        <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
+        {{/data}}
     </template>
 
-    <table id='history-information'>
-        <tbody></tbody>
-    </table>
+    <div id="modal-wrapper" style="display: none;">
+        <div id="history-modal">
+        <table id='history-information'>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div id="close-modal" onclick="removeModal()">x</div>
+        <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
+    </div>
+        <div id="background-blur"></div>
+    </div>
 
     <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
 </body>

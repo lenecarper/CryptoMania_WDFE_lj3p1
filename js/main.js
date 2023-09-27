@@ -31,15 +31,6 @@ function fetchCoinData()
 
     // Process the data and log it into the console
     .then((data) => {
-        // const coinTemplate = document.getElementById('crypto-template').innerHTML;
-
-        // const renderedCoins = data.data.map((coin) => {
-        //     return Mustache.render(coinTemplate, coin);
-        // });
-
-        // console.log(renderedCoins.join(''));
-
-        // document.getElementById('crypto-overview-table tbody').innerHTML = renderedCoins.join('');
         var coinTemplate = $("#crypto-template").html();
 
         var renderTemplate = Mustache.render(coinTemplate, data);
@@ -111,12 +102,16 @@ function loadModal(id)
         const historyModalData = {
             coin: data.data[0],
         };
-    
-        const historyModalTemplate = document.getElementById('history-modal-template').innerHTML;
+
+        var historyModalTemplate = $("#history-modal-template").html();
+        // const historyModalTemplate = document.getElementById('history-modal-template').innerHTML;
         const renderedHistoryModal = Mustache.render(historyModalTemplate, historyModalData);
-    
-        document.getElementById('history-modal').innerHTML = renderedHistoryModal;
-    
+
+
+        var renderTemplate = Mustache.render(historyModalTemplate, historyModalData);
+
+        $("#history-information").append(renderTemplate);
+
         // Display the modal
         document.getElementById('modal-wrapper').style.display = "block";
     
@@ -127,9 +122,15 @@ function loadModal(id)
         // Extract the datetime and prices from the API data
         const timestamps = data.data.map(entry => new Date(entry.time).toLocaleDateString());
         const prices = data.data.map(entry => parseFloat(entry.priceUsd));
+        const canvas = document.getElementById('cryptoChart');
 
         // Create a line chart using Chart.js
-        const ctx = document.getElementById('cryptoChart').getContext('2d');
+        if (canvas && canvas.chart)
+        {
+            canvas.chart.destroy();
+        }
+
+        const ctx = canvas.getContext('2d');
         const chart = new Chart(ctx, {
             // Graph options, display time, cryptocurrency price & change border (color)
             type: 'line',
