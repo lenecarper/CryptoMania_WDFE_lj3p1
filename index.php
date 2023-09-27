@@ -12,15 +12,19 @@
 <body>
     <!-- Mustache template for cryptocurrency data -->
     <template id="crypto-template" type="text/template">
-        <table>
+       {{#data}}
             <tr><th>$ {{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
             <tr><td onclick='loadModal("{{id}}")'>Learn more about {{name}}</td></tr>
-        </table>
+        {{/data}}
     </template>
+
+    <table id="crypto-overview-table">
+        <tbody></tbody>
+    </table>
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">

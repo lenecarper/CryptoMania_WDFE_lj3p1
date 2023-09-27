@@ -31,15 +31,20 @@ function fetchCoinData()
 
     // Process the data and log it into the console
     .then((data) => {
-        const coinTemplate = document.getElementById('crypto-template').innerHTML;
+        // const coinTemplate = document.getElementById('crypto-template').innerHTML;
 
-        const renderedCoins = data.data.map((coin) => {
-            return Mustache.render(coinTemplate, coin);
-        });
+        // const renderedCoins = data.data.map((coin) => {
+        //     return Mustache.render(coinTemplate, coin);
+        // });
 
-        console.log(renderedCoins.join(''));
+        // console.log(renderedCoins.join(''));
 
-        document.getElementById('crypto-template').innerHTML = renderedCoins.join('');
+        // document.getElementById('crypto-overview-table tbody').innerHTML = renderedCoins.join('');
+        var coinTemplate = $("#crypto-template").html();
+
+        var renderTemplate = Mustache.render(coinTemplate, data);
+
+        $("#crypto-overview-table").append(renderTemplate);
 
         // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
