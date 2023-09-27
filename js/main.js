@@ -37,6 +37,8 @@ function fetchCoinData()
             return Mustache.render(coinTemplate, coin);
         });
 
+        console.log(renderedCoins.join(''));
+
         document.getElementById('crypto-template').innerHTML = renderedCoins.join('');
 
         // Remove the loading screen once the page loads
@@ -88,7 +90,6 @@ function loadModal(id)
             'Authorization': `Bearer ${apiKey}`,
         },
     })
-
 
     // Check the response the API call returns
     .then((response) => {
