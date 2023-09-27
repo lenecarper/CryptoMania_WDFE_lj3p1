@@ -18,7 +18,7 @@
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
-            <tr><td onclick='loadModal("{{id}}")'>Learn more about {{name}}</td></tr>
+            <tr><td onclick='loadModal("{{id}}")' class="learn-more-link">Learn more about {{name}}</td></tr>
         {{/data}}
     </template>
 
@@ -28,17 +28,20 @@
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">
-        <table id='history-information'>
             <tr><th>$ {{coin.symbol}}</th></tr>
             <tr><td>Cryptocurrency: {{coin.name}}</td></tr>
             <tr><td>Value: ${{coin.priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{coin.marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{coin.volumeUsd24Hr}}</td></tr>
             <tr><td>Supply: {{coin.supply}}</td></tr>
-        </table>
         <div id='close-modal' onclick='removeModal()'>x</div>
         <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
     </template>
+
+    <table id='history-information'>
+        <tbody></tbody>
+    </table>
+
     <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
 </body>
 
