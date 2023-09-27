@@ -1,10 +1,5 @@
 <?php require ('inc/functions.php'); ?>
 
-<?php if (!$_SESSION['loggedIn'])
-{
-    header('location:login.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +16,18 @@
         <div id="history-modal"></div>
         <div id="background-blur"></div>
     </div>
+    <!-- <script id="crypto-template" type="text/template">
+    <!-- Define your template here -->
+    <!-- <table>
+        <tr><th>$ {{symbol}}</th></tr>
+        <tr><td>{{name}}</td></tr>
+        <tr><td>Value: ${{priceUsd}} USD</td></tr>
+        <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
+        <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
+        <tr><td onclick="loadModal('{{id}}')">Learn more about {{name}}</td></tr>
+    </table> -->
+    <!-- </script> -->
+
     <!-- <div id="crypto-template">
         <h1>{{name}}</h1>
         <h1>{{id}}</h1>
