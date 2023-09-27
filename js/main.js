@@ -29,47 +29,26 @@ return response.json();
 
 // Process the data and log it into the console
 .then((data) => {
-    // console.log(data);
+    const coinTemplate = document.getElementById('crypto-template').innerHTML;
+    const historyModalTemplate = document.getElementById('history-modal-template').innerHTML;
 
-    // // Get a reference to your HTML template
-    // const template = document.getElementById('crypto-template').innerHTML;
-
-    // // Use Mustache to render the data into the template
-    // const rendered = Mustache.render(template, data);
-
-    // // Display the rendered template
-    // document.getElementById('crypto-template').innerHTML = rendered;
-
-    const coin = Object.keys(data).map(function(key)
-    {
-        return data[key];
+    const renderedCoins = data.data.map((coin) => {
+        return Mustache.render(coinTemplate, coin);
     });
 
-    // Loop through all the coins with the constant variable 'value'
-    for (const value of coin)
-    {
-        // Log the data of the currently selected coin into the console
-        console.log(value);
-        // Loop through all the coins and print them into the HTML
-        for (let i = 0; i < value.length; i++)
-        {
-            // Add values into the crypto-wrapper tabs, replacing with template soon
-            document.getElementById('crypto-wrapper').innerHTML +=
-            // Add a table with the crypto data printed into them
-            "<table>" +
-            "<tr><th>$ " + value[i].symbol + "</th></tr>" +
-            "<tr><td>" + value[i].name + "</td></tr>" +
-            "<tr><td>" + "Value: " + "$" + value[i].priceUsd + " USD" + "</td></tr>" +
-            "<tr><td>" + "Market cap: " + "$" + value[i].marketCapUsd + "</td></tr>" +
-            "<tr><td>" + "Trade volume past 24 hours: " + "$" + value[i].volumeUsd24Hr + "</td></tr>" +
-            // Load the modal on click, display graph and information below
-            "<tr><td onclick='loadModal(" + '"' + value[i].id + '"' + ")'>Learn more about " + value[i].name + "</td></tr>" +
-            "</table>";
-        }
-        // Remove the loading screen once the page loads
-        document.getElementById('loading-screen').style.display = "none";
-    }
-    })
+    document.getElementById('crypto-template').innerHTML = renderedCoins.join('');
+
+    // Remove the loading screen once the page loads
+    document.getElementById('loading-screen').style.display = "none";
+
+    // Attach click event handlers to load the history modal
+    const learnMoreLinks = document.querySelectorAll('.learn-more-link');
+    learnMoreLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            loadModal(link.dataset.coinId);
+        });
+    });
+})
 
     // Catch errors beforehand to prevent crashing of the web application
     .catch((error) => {
@@ -122,31 +101,20 @@ function loadModal(id)
 
     // Process the data and log it into the console
     .then((data) => {
-        const crypto = Object.keys(data).map(function(key)
-        {
-            return data[key];
-        });
-
-        // Get the crypto data from the array into a 'coin' variable
-        var coin = crypto[0];
-        // Log all the history data
-        console.log(coin);
-        // Load a table with the past 7 days of crypto history into the modal, replacing with template soon
-        document.getElementById('history-modal').innerHTML = 
-        "<table id='history-information'><tr><th>$ " + coin.symbol +
-        "<tr><td>" + "Cryptocurrency: " + coin.name + "</td></tr>" +
-        "<tr><td>" + "Value: " + "$" + coin.priceUsd + " USD" + "</td></tr>" +
-        "<tr><td>" + "Market cap: " + "$" + coin.marketCapUsd + "</td></tr>" +
-        "<tr><td>" + "Trade volume past 24 hours: " + "$" + coin.volumeUsd24Hr + "</td></tr>" +
-        "</td></tr><tr><td>" + "Supply: " + coin.supply +
-        "</td></tr></table>" +
-        // Remove the modal with a clickable div
-        "<div id='close-modal' onclick='removeModal()'>x</div>" +
-        // Load the line graph canvas in a div
-        "<div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>";
-
-        // Remove the loading screen once all the data is loaded
+        const historyModalData = {
+            coin: data.data[0],
+        };
+    
+        const renderedHistoryModal = Mustache.render(historyModalTemplate, historyModalData);
+    
+        document.getElementById('history-modal').innerHTML = renderedHistoryModal;
+    
+        // Display the modal
+        document.getElementById('modal-wrapper').style.display = "block";
+    
+        // Remove the loading screen
         document.getElementById('loading-screen').style.display = "none";
+    
 
         // Extract the datetime and prices from the API data
         const timestamps = data.data.map(entry => new Date(entry.time).toLocaleDateString());

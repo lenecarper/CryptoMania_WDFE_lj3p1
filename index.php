@@ -11,27 +11,32 @@
 </head>
 <body>
     <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
-    <div id="crypto-wrapper"></div>
-    <div id="modal-wrapper" style="display: none;">
-        <div id="history-modal"></div>
-        <div id="background-blur"></div>
-    </div>
-    <!-- <script id="crypto-template" type="text/template">
-    <!-- Define your template here -->
-    <!-- <table>
-        <tr><th>$ {{symbol}}</th></tr>
-        <tr><td>{{name}}</td></tr>
-        <tr><td>Value: ${{priceUsd}} USD</td></tr>
-        <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
-        <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
-        <tr><td onclick="loadModal('{{id}}')">Learn more about {{name}}</td></tr>
-    </table> -->
-    <!-- </script> -->
+    <!-- Mustache template for cryptocurrency data -->
 
-    <!-- <div id="crypto-template">
-        <h1>{{name}}</h1>
-        <h1>{{id}}</h1>
-    </div> -->
+    <template id="crypto-template" type="text/template">
+        <table>
+            <tr><th>$ {{symbol}}</th></tr>
+            <tr><td>{{name}}</td></tr>
+            <tr><td>Value: ${{priceUsd}} USD</td></tr>
+            <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
+            <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
+            <tr><td onclick='loadModal("{{id}}")'>Learn more about {{name}}</td></tr>
+        </table>
+    </template>
+
+    <!-- Mustache template for the history modal -->
+    <template id="history-modal-template" type="text/template">
+        <table id='history-information'>
+            <tr><th>$ {{coin.symbol}}</th></tr>
+            <tr><td>Cryptocurrency: {{coin.name}}</td></tr>
+            <tr><td>Value: ${{coin.priceUsd}} USD</td></tr>
+            <tr><td>Market cap: ${{coin.marketCapUsd}}</td></tr>
+            <tr><td>Trade volume past 24 hours: ${{coin.volumeUsd24Hr}}</td></tr>
+            <tr><td>Supply: {{coin.supply}}</td></tr>
+        </table>
+        <div id='close-modal' onclick='removeModal()'>x</div>
+        <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
+    </template>
 </body>
 
 <!-- jQuery -->
