@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Mustache template for cryptocurrency data -->
-    <template id="crypto-template">
+    <template id="crypto-template" type="text/template">
         <table>
             <tr><th>$ {{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>
@@ -23,7 +23,7 @@
     </template>
 
     <!-- Mustache template for the history modal -->
-    <template id="history-modal-template">
+    <template id="history-modal-template" type="text/template">
         <table id='history-information'>
             <tr><th>$ {{coin.symbol}}</th></tr>
             <tr><td>Cryptocurrency: {{coin.name}}</td></tr>
