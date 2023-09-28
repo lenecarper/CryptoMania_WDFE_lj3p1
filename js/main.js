@@ -115,6 +115,8 @@ function loadModal(id)
         // Extract the datetime and prices from the API data
         const timestamps = historyDataArray[0].data.map(entry => new Date(entry.time).toLocaleDateString());
         const prices = historyDataArray[0].data.map(entry => parseFloat(entry.priceUsd));
+        const assets = assetDataArray[0].data;
+        const cryptoName = assets[cryptocurrencyId].name;
         var canvas = document.getElementById('cryptoChart');
 
         // Create a line chart using Chart.js
@@ -130,7 +132,7 @@ function loadModal(id)
             data: {
                 labels: timestamps,
                 datasets: [{
-                    label: `${cryptocurrencyId} Price (USD)`,
+                    label: `${cryptoName} Price (USD)`,
                     data: prices,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
