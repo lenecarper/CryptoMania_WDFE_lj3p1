@@ -4,6 +4,10 @@ const apiUrl = 'https://api.coincap.io/v2';
 // Replaced dynamically by the cryptocurrency ID
 const cryptocurrencyId = 'bitcoin';
 
+// Arrays to save the asset and history data in
+const assetDataArray = [];
+const historyDataArray = [];
+
 async function fetchCoinData()
 {
     try {
@@ -13,8 +17,7 @@ async function fetchCoinData()
         // 7 days in milliseconds
         const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1200);
 
-        const assetDataArray = [];
-        const historyDataArray = [];
+
 
         // Make the GET request
         const assetCall = await fetch(`https://api.coincap.io/v2/assets`, {
@@ -46,14 +49,8 @@ async function fetchCoinData()
         // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
 
-        // Attach click event handlers to load the history modal
-        const learnMoreLinks = document.querySelectorAll('.learn-more-link');
-        learnMoreLinks.forEach((link) => {
-            link.addEventListener('click', () => {
-                loadModal(link.dataset.coinId);
-            });
-        });
-
+        // // Attach click event handlers to load the history modal
+        // const learnMoreLinks = document.querySelectorAll('.learn-more-link');
 
         // Make the GET request
         const historyCall = await fetch(`https://api.coincap.io/v2/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`, {
@@ -124,8 +121,6 @@ async function fetchCoinData()
             canvas.chart = chart;
         }
 
-        
-
         if (historyData)
         {
             // Create the line chart by running the function
@@ -139,7 +134,6 @@ async function fetchCoinData()
 }
 
 // Load the history modal, add a line chart using chart.js
-
 function loadModal(id)
 {
     // Get the crypto ID dynamically
@@ -148,18 +142,22 @@ function loadModal(id)
 
     var historyModalTemplate = $("#history-modal-template").html();
 
-    var renderTemplate = Mustache.render(historyModalTemplate, assetData);
+    const historyContext = {
+        symbol: assetDataArray[cryptocurrencyId].symbol,
+        name: assetDataArray[cryptocurrencyId].name,
+        priceUsd: assetDataArray[cryptocurrencyId].priceUsd,
+        marketCapUsd: assetDataArray[cryptocurrencyId].marketCapUsd
+    }
 
-    $("#history-information").append(renderTemplate);
+    var renderTemplate = Mustache.render(historyModalTemplate, historyContext);
+
+    $("#history-information").html(renderTemplate);
 
     // Display the modal
     document.getElementById('modal-wrapper').style.display = "block";
 
     // Remove the loading screen
     document.getElementById('loading-screen').style.display = "none";
-
-    // Display the modal
-    document.getElementById('modal-wrapper').style.display = "block";
 }
 
 // Remove the modal by displaying it as none when the function is activated
