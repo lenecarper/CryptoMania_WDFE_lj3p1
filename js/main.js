@@ -73,60 +73,6 @@ async function fetchCoinData()
         historyDataArray.push(historyData);
         console.log(historyDataArray);
 
-        // Create the line chart with graph.js (loaded in index)
-        function createLineChart()
-        {
-            // Extract the datetime and prices from the API data
-            const timestamps = historyData.data.map(entry => new Date(entry.time).toLocaleDateString());
-            const prices = historyData.data.map(entry => parseFloat(entry.priceUsd));
-            var canvas = document.getElementById('cryptoChart');
-
-            // Create a line chart using Chart.js
-            if (canvas && canvas.chart)
-            {
-                canvas.chart.destroy();
-            }
-
-            const ctx = canvas.getContext('2d');
-            const chart = new Chart(ctx, {
-                // Graph options, display time, cryptocurrency price & change border (color)
-                type: 'line',
-                data: {
-                    labels: timestamps,
-                    datasets: [{
-                        label: `${cryptocurrencyId} Price (USD)`,
-                        data: prices,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                    }],
-                },
-                // Scaling options, display time and price text
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date',
-                            },
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Price (USD)',
-                            },
-                        },
-                    },
-                },
-            });
-            canvas.chart = chart;
-        }
-
-        if (historyData)
-        {
-            // Create the line chart by running the function
-            createLineChart();
-        }
-
     // Catch errors beforehand to prevent crashing of the web application
     } catch(error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -139,7 +85,7 @@ function loadModal(id)
     // Get the crypto ID dynamically
     const cryptocurrencyId = id;
     console.log('Cryptocurrency ID: ' + cryptocurrencyId);
-    var assets = assetDataArray[0].data;
+    const assets = assetDataArray[0].data;
 
     var historyModalTemplate = $("#history-modal-template").html();
 
@@ -153,13 +99,63 @@ function loadModal(id)
     console.log(historyContext);
     var renderTemplate = Mustache.render(historyModalTemplate, historyContext);
 
-    $("#history-information").html(renderTemplate);
+    $("#history-information").append(renderTemplate);
 
     // Display the modal
     document.getElementById('modal-wrapper').style.display = "block";
 
     // Remove the loading screen
     document.getElementById('loading-screen').style.display = "none";
+
+    // Create the line chart with graph.js (loaded in index)
+    function createLineChart()
+    {
+        const historyInfo = historyDataArray[0].data;
+        // Extract the datetime and prices from the API data
+        const timestamps = historyInfo[cryptocurrencyId].data.map(entry => new Date(entry.time).toLocaleDateString());
+        const prices = historyInfo[cryptocurrencyId].data.map(entry => parseFloat(entry.priceUsd));
+        var canvas = document.getElementById('cryptoChart');
+
+        // Create a line chart using Chart.js
+        if (canvas && canvas.chart)
+        {
+            canvas.chart.destroy();
+        }
+
+        const ctx = canvas.getContext('2d');
+        const chart = new Chart(ctx, {
+            // Graph options, display time, cryptocurrency price & change border (color)
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: `${cryptocurrencyId} Price (USD)`,
+                    data: prices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                }],
+            },
+            // Scaling options, display time and price text
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date',
+                        },
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)',
+                        },
+                    },
+                },
+            },
+        });
+        canvas.chart = chart;
+    }
+    createLineChart();
 }
 
 // Remove the modal by displaying it as none when the function is activated
