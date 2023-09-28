@@ -53,7 +53,7 @@
         <div id="background-blur"></div>
     </div>
 
-    <div id="loading-screen">Loading..<img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div>
+    <div id="loading-screen"><img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div><br><h1 style="text-align: center;">Loading..</h1>
 </body>
 
 <!-- jQuery -->
