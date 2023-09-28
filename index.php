@@ -22,11 +22,7 @@
         {{/data}}
     </template>
 
-    <table id="crypto-overview-table">
-        <tbody>
-
-        </tbody>
-    </table>
+    <div id="crypto-wrapper"><table id="crypto-overview-table"></table></div>
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">
@@ -42,11 +38,7 @@
 
     <div id="modal-wrapper" style="display: none;">
         <div id="history-modal">
-        <table id='history-information'>
-            <tbody>
-
-            </tbody>
-        </table>
+        <table id='history-information'></table>
         <div id="close-modal" onclick="removeModal()">x</div>
         <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
     </div>

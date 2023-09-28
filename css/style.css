@@ -43,11 +43,23 @@ th
     text-align: left;
 }
 
+th:hover
+{
+    background: #014055;
+    transition: 0.25s;
+}
+
 td
 {
     color: #fff;
     font-weight: 400;
     padding: 0.65em 1em;
+}
+
+td:hover
+{
+    background: #014055;
+    transition: 0.25s;
 }
 
 .disabled td
