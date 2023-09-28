@@ -124,29 +124,7 @@ async function fetchCoinData()
             canvas.chart = chart;
         }
 
-        // Load the history modal, add a line chart using chart.js
-
-        function loadModal(id)
-        {
-            // Get the crypto ID dynamically
-            const cryptocurrencyId = id;
-            console.log('Cryptocurrency ID: ' + cryptocurrencyId);
-
-            var historyModalTemplate = $("#history-modal-template").html();
-
-            var renderTemplate = Mustache.render(historyModalTemplate, assetData);
-
-            $("#history-information").append(renderTemplate);
-
-            // Display the modal
-            document.getElementById('modal-wrapper').style.display = "block";
-
-            // Remove the loading screen
-            document.getElementById('loading-screen').style.display = "none";
-
-            // Display the modal
-            document.getElementById('modal-wrapper').style.display = "block";
-        }
+        
 
         if (historyData)
         {
@@ -158,6 +136,30 @@ async function fetchCoinData()
     } catch(error) {
         console.error('There was a problem with the fetch operation:', error);
     }
+}
+
+// Load the history modal, add a line chart using chart.js
+
+function loadModal(id)
+{
+    // Get the crypto ID dynamically
+    const cryptocurrencyId = id;
+    console.log('Cryptocurrency ID: ' + cryptocurrencyId);
+
+    var historyModalTemplate = $("#history-modal-template").html();
+
+    var renderTemplate = Mustache.render(historyModalTemplate, assetData);
+
+    $("#history-information").append(renderTemplate);
+
+    // Display the modal
+    document.getElementById('modal-wrapper').style.display = "block";
+
+    // Remove the loading screen
+    document.getElementById('loading-screen').style.display = "none";
+
+    // Display the modal
+    document.getElementById('modal-wrapper').style.display = "block";
 }
 
 // Remove the modal by displaying it as none when the function is activated
