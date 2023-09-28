@@ -38,6 +38,7 @@ async function fetchCoinData()
         // Gather the data
         const assetData = await assetCall.json();
         assetDataArray.push(assetData);
+        console.log('ASSETS.');
         console.log(assetDataArray);
 
         var coinTemplate = $("#crypto-template").html();
@@ -71,6 +72,7 @@ async function fetchCoinData()
         // Gather the data
         const historyData = await historyCall.json();
         historyDataArray.push(historyData);
+        console.log('HISTORY.');
         console.log(historyDataArray);
 
     // Catch errors beforehand to prevent crashing of the web application
@@ -110,10 +112,9 @@ function loadModal(id)
     // Create the line chart with graph.js (loaded in index)
     function createLineChart()
     {
-        const historyInfo = historyDataArray[0].data;
         // Extract the datetime and prices from the API data
-        const timestamps = historyInfo[cryptocurrencyId].data.map(entry => new Date(entry.time).toLocaleDateString());
-        const prices = historyInfo[cryptocurrencyId].data.map(entry => parseFloat(entry.priceUsd));
+        const timestamps = historyDataArray[0].data.map(entry => new Date(entry.time).toLocaleDateString());
+        const prices = historyDataArray[0].data.map(entry => parseFloat(entry.priceUsd));
         var canvas = document.getElementById('cryptoChart');
 
         // Create a line chart using Chart.js
