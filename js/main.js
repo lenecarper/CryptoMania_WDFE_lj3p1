@@ -139,16 +139,18 @@ function loadModal(id)
     // Get the crypto ID dynamically
     const cryptocurrencyId = id;
     console.log('Cryptocurrency ID: ' + cryptocurrencyId);
+    var assets = assetDataArray[0].data;
 
     var historyModalTemplate = $("#history-modal-template").html();
 
     const historyContext = {
-        symbol: assetDataArray[cryptocurrencyId].symbol,
-        name: assetDataArray[cryptocurrencyId].name,
-        priceUsd: assetDataArray[cryptocurrencyId].priceUsd,
-        marketCapUsd: assetDataArray[cryptocurrencyId].marketCapUsd
+        symbol: assets[cryptocurrencyId].symbol,
+        name: assets[cryptocurrencyId].name,
+        priceUsd: assets[cryptocurrencyId].priceUsd,
+        marketCapUsd: assets[cryptocurrencyId].marketCapUsd
     }
 
+    console.log(historyContext);
     var renderTemplate = Mustache.render(historyModalTemplate, historyContext);
 
     $("#history-information").html(renderTemplate);
