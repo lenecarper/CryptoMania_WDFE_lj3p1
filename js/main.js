@@ -61,9 +61,9 @@ function fetchCoinData()
 function loadModal(id)
 {
     // API key and URL to call
-    console.log(id);
     // Get the crypto ID dynamically
     const cryptocurrencyId = id;
+    console.log(cryptocurrencyId);
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     const apiUrl = 'https://api.coincap.io/v2';
     // Calculate timestamps for the past week
@@ -122,13 +122,13 @@ function loadModal(id)
         // Extract the datetime and prices from the API data
         const timestamps = data.data.map(entry => new Date(entry.time).toLocaleDateString());
         const prices = data.data.map(entry => parseFloat(entry.priceUsd));
-        const canvas = document.getElementById('cryptoChart');
+        var canvas = document.getElementById('cryptoChart');
 
         // Create a line chart using Chart.js
-        if (canvas && canvas.chart)
-        {
-            canvas.chart.destroy();
-        }
+        // if (canvas && canvas.chart)
+        // {
+        //     canvas.chart.destroy();
+        // }
 
         const ctx = canvas.getContext('2d');
         const chart = new Chart(ctx, {
@@ -161,7 +161,9 @@ function loadModal(id)
                 },
             },
         });
+        // canvas.chart = chart;
     })}
+    
     // Catch errors pre-emptively and log them into the console
     catch (error)
     {
