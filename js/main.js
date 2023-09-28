@@ -1,16 +1,13 @@
 // API key and URL to call
+const apiUrl = 'https://api.coincap.io/v2';
 
 // Replaced dynamically by the cryptocurrency ID
 const cryptocurrencyId = 'bitcoin';
-const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
-const apiUrl = 'https://api.coincap.io/v2';
-
-// Endpoint, currently assets
-const endpoint = `/assets`;
 
 async function fetchCoinData()
 {
     try {
+        const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
         // Calculate timestamps for the past week
         const endTimestamp = Date.now();
         // 7 days in milliseconds
@@ -61,41 +58,12 @@ async function fetchCoinData()
         const historyData = await historyCall.json();
         historyDataArray.push(historyData);
         console.log(historyDataArray);
-        
-        // Check the response the API call returns
-        then((response) => {
-        if (!response.ok)
-        {
-            throw new Error('A network error has occured.');
-        }
-        return response.json();
-        })
-    
-        // Process the data and log it into the console
-        then((data) => {
-            var coinTemplate = $("#crypto-template").html();
-    
-            var renderTemplate = Mustache.render(coinTemplate, data);
-    
-            $("#crypto-overview-table").append(renderTemplate);
-    
-            // Remove the loading screen once the page loads
-            document.getElementById('loading-screen').style.display = "none";
-    
-            // Attach click event handlers to load the history modal
-            const learnMoreLinks = document.querySelectorAll('.learn-more-link');
-            learnMoreLinks.forEach((link) => {
-                link.addEventListener('click', () => {
-                    loadModal(link.dataset.coinId);
-                });
-            });
-        })
-    
-        // Catch errors beforehand to prevent crashing of the web application
-        } catch(error) {
-            console.error('There was a problem with the fetch operation:', error);
-        }
+
+    // Catch errors beforehand to prevent crashing of the web application
+    } catch(error) {
+        console.error('There was a problem with the fetch operation:', error);
     }
+}
 
 
 // Load the history modal, add a line chart using chart.js
