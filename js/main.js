@@ -5,14 +5,8 @@ const apiUrl = 'https://api.coincap.io/v2';
 const assetDataArray = [];
 const historyDataArray = [];
 
+// Placeholder ID, replace dynamically in the future
 let cryptocurrencyId;
-
-function getCryptoId(coin) {
-    const coinId = coin.id;
-    // Replaced dynamically by the cryptocurrency ID
-    cryptocurrencyId = coinId;
-    console.log("Clicked cell ID: " + cryptocurrencyId);
-}
 
 async function fetchCoinData()
 {
@@ -52,6 +46,10 @@ async function fetchCoinData()
 
         // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
+
+        // Replace this with a dynamic ID (loadModal has cryptoId but not accessible)
+        cryptocurrencyId = assetDataArray[0].data[1].id;
+        console.log('Full cryptocurrency ID: ' + cryptocurrencyId);
 
         // Make the GET request
         const historyCall = await fetch(`https://api.coincap.io/v2/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`, {
