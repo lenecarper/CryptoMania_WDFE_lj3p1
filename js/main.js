@@ -3,7 +3,7 @@ const apiUrl = 'https://api.coincap.io/v2';
 
 // Arrays to save the asset and history data in
 const assetDataArray = [];
-const historyDataArray = [];
+let historyDataArray = [];
 
 // Placeholder ID, replace dynamically in the future
 let cryptocurrencyId;
@@ -12,10 +12,7 @@ async function fetchCoinData()
 {
     try {
         const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
-        // Calculate timestamps for the past week
-        const endTimestamp = Date.now();
-        // 7 days in milliseconds
-        const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1200);
+
         // Make the GET request
         const assetCall = await fetch(`https://api.coincap.io/v2/assets`, {
             method: 'GET',
@@ -47,32 +44,6 @@ async function fetchCoinData()
         // Remove the loading screen once the page loads
         document.getElementById('loading-screen').style.display = "none";
 
-        // Replace this with a dynamic ID (loadModal has cryptoId but not accessible)
-        cryptocurrencyId = assetDataArray[0].data[1].id;
-        console.log('Full cryptocurrency ID: ' + cryptocurrencyId);
-
-        // Make the GET request
-        const historyCall = await fetch(`https://api.coincap.io/v2/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`, {
-            method: 'GET',
-            // Give authorization headers with the API key
-            headers:
-            {
-                'Authorization': `Bearer ${apiKey}`,
-            },
-        })
-
-        // Check if the request went through
-        if (!historyCall.ok)
-        {
-            throw new Error('Error fetching data from `history`');
-        }
-
-        // Gather the data
-        const historyData = await historyCall.json();
-        historyDataArray.push(historyData);
-        console.log('HISTORY.');
-        console.log(historyDataArray);
-
     // Catch errors beforehand to prevent crashing of the web application
     } catch(error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -80,10 +51,41 @@ async function fetchCoinData()
 }
 
 // Load the history modal, add a line chart using chart.js
-function loadModal(id, $this)
+async function loadModal(id, $this)
 {
+    const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
+    // Calculate timestamps for the past week
+    const endTimestamp = Date.now();
+    // 7 days in milliseconds
+    const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1200);
+
     cryptocurrencyId = $this.id;
     console.log(cryptocurrencyId + ' - Full ID');
+
+    // Make the GET request
+    const historyCall = await fetch(`https://api.coincap.io/v2/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`, {
+        method: 'GET',
+        // Give authorization headers with the API key
+        headers:
+        {
+            'Authorization': `Bearer ${apiKey}`,
+        },
+    })
+
+    // Check if the request went through
+    if (!historyCall.ok)
+    {
+        throw new Error('Error fetching data from `history`');
+    }
+
+    // Gather the data
+    historyDataArray = [];
+    const historyData = await historyCall.json();
+    historyDataArray.push(historyData);
+    console.log('HISTORY.');
+    console.log(historyDataArray);
+    console.log('Full cryptocurrency ID: ' + cryptocurrencyId);
+
     // Get the crypto ID dynamically
     const cryptoId = id;
     console.log('Cryptocurrency ID: ' + cryptoId);
