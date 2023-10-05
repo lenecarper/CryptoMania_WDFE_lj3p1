@@ -80,8 +80,10 @@ async function fetchCoinData()
 }
 
 // Load the history modal, add a line chart using chart.js
-function loadModal(id)
+function loadModal(id, $this)
 {
+    cryptocurrencyId = $this.id;
+    console.log(cryptocurrencyId + ' - Full ID');
     // Get the crypto ID dynamically
     const cryptoId = id;
     console.log('Cryptocurrency ID: ' + cryptoId);

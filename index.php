@@ -18,7 +18,7 @@
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
-            <tr><td onclick='loadModal("{{rank}}" - 1);' id="{{id}}" class="learn-more-link">Learn more about {{name}}</td></tr>
+            <tr><td onclick='loadModal("{{rank}}" - 1, this);' id="{{id}}" class="learn-more-link">Learn more about {{name}}</td></tr>
         {{/data}}
     </template>
 
