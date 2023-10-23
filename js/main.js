@@ -2,7 +2,7 @@
 const apiUrl = 'https://api.coincap.io/v2';
 
 // Arrays to save the asset and history data in
-let assetDataArray = [];
+const assetDataArray = [];
 let historyDataArray = [];
 
 // Placeholder ID, replace dynamically in the future
@@ -31,28 +31,29 @@ async function fetchCoinData()
 
         // Gather the data
         const assetData = await assetCall.json();
-        // Process the data and add symbolLowerCase property
-        const processedData = assetData.data.map(asset => ({
-            changePercent24Hr: asset.changePercent24Hr,
-            explorer: asset.explorer,
-            id: asset.id,
-            marketCapUsd: asset.marketCapUsd,
-            maxSupply: asset.maxSupply,
-            name: asset.name,
-            priceUsd: asset.priceUsd,
-            rank: asset.rank,
-            supply: asset.supply,
-            volumeUsd24Hr: asset.volumeUsd24Hr,
-            vwap24Hr: asset.vwap24Hr,
-            symbol: asset.symbol,
-            symbolLowerCase: asset.symbol.toLowerCase() // Add symbolLowerCase property
-        }));
-        
-        assetDataArray.push(processedData);
+
+        // Process the data and add symbolLowerCase property to each asset object
+        const processedAssets = assetData.data.map(asset => {
+            return {
+                changePercent24Hr: asset.changePercent24Hr,
+                explorer: asset.explorer,
+                id: asset.id,
+                marketCapUsd: asset.marketCapUsd,
+                maxSupply: asset.maxSupply,
+                name: asset.name,
+                priceUsd: asset.priceUsd,
+                rank: asset.rank,
+                supply: asset.supply,
+                volumeUsd24Hr: asset.volumeUsd24Hr,
+                vwap24Hr: asset.vwap24Hr,
+                symbol: asset.symbol,
+                symbolLowerCase: asset.symbol.toLowerCase() // Add symbolLowerCase property
+            };
+        });
+
+        assetDataArray.push(processedAssets);
         console.log('ASSETS.');
         console.log(assetDataArray);
-
-        // assetData.symbolLowerCase = assetData.symbol.toLowerCase();
 
         var coinTemplate = $("#crypto-template").html();
 
@@ -108,8 +109,8 @@ async function loadModal(id, $this)
     // Get the crypto ID dynamically
     const cryptoId = id;
     console.log('Cryptocurrency ID: ' + cryptoId);
-    const assets = assetDataArray[0].data;
-    console.log(assetDataArray[0].data);
+    const assets = assetDataArray[0];
+    console.log(assetDataArray[0]);
 
     var historyModalTemplate = $("#history-modal-template").html();
 
@@ -138,7 +139,7 @@ async function loadModal(id, $this)
         // Extract the datetime and prices from the API data
         const timestamps = historyDataArray[0].data.map(entry => new Date(entry.time).toLocaleDateString());
         const prices = historyDataArray[0].data.map(entry => parseFloat(entry.priceUsd));
-        const assets = assetDataArray[0].data;
+        const assets = assetDataArray[0];
         const cryptoName = assets[cryptoId].name;
         var canvas = document.getElementById('cryptoChart');
 
