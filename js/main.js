@@ -2,7 +2,7 @@
 const apiUrl = 'https://api.coincap.io/v2';
 
 // Arrays to save the asset and history data in
-const assetDataArray = [];
+let assetDataArray = [];
 let historyDataArray = [];
 
 // Placeholder ID, replace dynamically in the future
@@ -109,6 +109,7 @@ async function loadModal(id, $this)
     const cryptoId = id;
     console.log('Cryptocurrency ID: ' + cryptoId);
     const assets = assetDataArray[0].data;
+    console.log(assetDataArray[0].data);
 
     var historyModalTemplate = $("#history-modal-template").html();
 
