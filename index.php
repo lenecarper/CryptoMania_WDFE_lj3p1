@@ -13,7 +13,7 @@
     <!-- Mustache template for cryptocurrency data -->
     <template id="crypto-template" type="text/template">
        {{#data}}
-            <tr><th><img src="https://static.coincap.io/assets/icons/btc@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
+            <tr><th><img src="https://static.coincap.io/assets/icons/{{symbolLowerCase}}@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
