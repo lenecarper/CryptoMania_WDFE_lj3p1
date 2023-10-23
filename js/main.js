@@ -31,9 +31,28 @@ async function fetchCoinData()
 
         // Gather the data
         const assetData = await assetCall.json();
-        assetDataArray.push(assetData);
+        // Process the data and add symbolLowerCase property
+        const processedData = assetData.data.map(asset => ({
+            changePercent24Hr: asset.changePercent24Hr,
+            explorer: asset.explorer,
+            id: asset.id,
+            marketCapUsd: asset.marketCapUsd,
+            maxSupply: asset.maxSupply,
+            name: asset.name,
+            priceUsd: asset.priceUsd,
+            rank: asset.rank,
+            supply: asset.supply,
+            volumeUsd24Hr: asset.volumeUsd24Hr,
+            vwap24Hr: asset.vwap24Hr,
+            symbol: asset.symbol,
+            symbolLowerCase: asset.symbol.toLowerCase() // Add symbolLowerCase property
+        }));
+        
+        assetDataArray.push(processedData);
         console.log('ASSETS.');
         console.log(assetDataArray);
+
+        // assetData.symbolLowerCase = assetData.symbol.toLowerCase();
 
         var coinTemplate = $("#crypto-template").html();
 

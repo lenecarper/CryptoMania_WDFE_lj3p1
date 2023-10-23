@@ -13,7 +13,7 @@
     <!-- Mustache template for cryptocurrency data -->
     <template id="crypto-template" type="text/template">
        {{#data}}
-            <tr><th>$ {{symbol}}</th></tr>
+            <tr><th><img src="https://static.coincap.io/assets/icons/btc@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
@@ -23,11 +23,12 @@
     </template>
 
     <div id="crypto-wrapper"><table id="crypto-overview-table"></table></div>
+    <!-- <img src="https://static.coincap.io/assets/icons/btc@2x.png" class="crypto-icon-image" /> -->
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">
         {{#data}}
-            <tr><th>$ {{symbol}}</th></tr>
+            <tr><th>{{symbol}}</th></tr>
             <tr><td>Cryptocurrency: {{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
