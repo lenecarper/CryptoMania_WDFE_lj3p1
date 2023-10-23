@@ -47,7 +47,7 @@ async function fetchCoinData()
                 volumeUsd24Hr: asset.volumeUsd24Hr,
                 vwap24Hr: asset.vwap24Hr,
                 symbol: asset.symbol,
-                symbolLowerCase: asset.symbol.toLowerCase()
+                symbolLowerCase: asset.symbol.toLowerCase() // Add symbolLowerCase property
             };
         });
 
