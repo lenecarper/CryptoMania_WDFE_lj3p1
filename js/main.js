@@ -55,6 +55,8 @@ async function fetchCoinData()
         console.log('ASSETS.');
         console.log(assetDataArray);
 
+        // console.log(processedAssets[0].symbolLowerCase + "wdjkkbdwbhwd");
+
         var coinTemplate = $("#crypto-template").html();
 
         var renderTemplate = Mustache.render(coinTemplate, assetData);
