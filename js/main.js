@@ -73,8 +73,7 @@ async function fetchCoinData()
 }
 
 // Load the history modal, add a line chart using chart.js
-async function loadModal(id, $this)
-{
+async function loadModal(id, $this) {
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     // Calculate timestamps for the past week
     const endTimestamp = Date.now();
@@ -88,22 +87,19 @@ async function loadModal(id, $this)
     const historyCall = await fetch(`https://api.coincap.io/v2/assets/${cryptocurrencyId}/history?interval=d1&start=${startTimestamp}&end=${endTimestamp}`, {
         method: 'GET',
         // Give authorization headers with the API key
-        headers:
-        {
+        headers: {
             'Authorization': `Bearer ${apiKey}`,
         },
-    })
+    });
 
     // Check if the request went through
-    if (!historyCall.ok)
-    {
+    if (!historyCall.ok) {
         throw new Error('Error fetching data from `history`');
     }
 
     // Gather the data
-    historyDataArray = [];
     const historyData = await historyCall.json();
-    historyDataArray.push(historyData);
+    historyDataArray = [historyData];
     console.log('HISTORY.');
     console.log(historyDataArray);
     console.log('Full cryptocurrency ID: ' + cryptocurrencyId);
@@ -112,28 +108,34 @@ async function loadModal(id, $this)
     const cryptoId = id;
     console.log('Cryptocurrency ID: ' + cryptoId);
     const assets = assetDataArray[0];
-    console.log(assetDataArray[0]);
 
     var historyModalTemplate = $("#history-modal-template").html();
 
     const historyContext = {
         id: assets[cryptoId].id,
-        symbol: assets[cryptoId].symbol,
         name: assets[cryptoId].name,
         priceUsd: assets[cryptoId].priceUsd,
-        marketCapUsd: assets[cryptoId].marketCapUsd
-    }
+        marketCapUsd: assets[cryptoId].marketCapUsd,
+        symbolLowerCase: assets[cryptoId].symbol.toLowerCase()
+    };
 
     console.log(historyContext);
-    var renderTemplate = Mustache.render(historyModalTemplate, historyContext);
 
-    $("#history-information").append(renderTemplate);
+    var renderHistory = Mustache.render(historyModalTemplate, historyContext);
+    console.log(renderHistory);
 
-    // Display the modal
-    document.getElementById('modal-wrapper').style.display = "block";
+    // Check if the rendered template is not empty before appending
+    if (renderHistory.trim()) {
+        $("#history-information").append(renderHistory);
+        // Display the modal
+        document.getElementById('modal-wrapper').style.display = "block";
+    } else {
+        console.error('Empty template. Data might be missing or incorrect.');
+    }
 
     // Remove the loading screen
     document.getElementById('loading-screen').style.display = "none";
+
 
     // Create the line chart with graph.js (loaded in index)
     function createLineChart()
@@ -192,4 +194,30 @@ function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
+
+// Add an event listener to the "Save to Database" button
+document.getElementById('save-to-database').addEventListener('click', function() {
+    // Extract the data you want to save (you can customize this part)
+    const dataToSave = {
+        // Example data, modify this to match your use case
+        name: 'Bitcoin',
+        priceUsd: 50000,
+        marketCapUsd: 900000000000
+    };
+
+    // Make an AJAX request to save the data
+    $.ajax({
+        url: 'save_crypto_data.php', // URL to your PHP backend file
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(dataToSave),
+        success: function(response) {
+            console.log(response); // Log the server response (success or error message)
+        },
+        error: function(error) {
+            console.error('Error saving data:', error);
+        }
+    });
+});
+
 fetchCoinData();

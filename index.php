@@ -11,26 +11,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- <div class="container"> -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Cryptomania</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cryptoportfolio.php">Crypto portfolio</a>
-                    </li>
-                </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cryptomania</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cryptoportfolio.php">Crypto portfolio</a>
+                </li>
+            </ul>
             </div>
-        </nav>
-    <!-- </div> -->
+        </div>
+    </nav>
+
     <!-- Mustache template for cryptocurrency data -->
     <template id="crypto-template" type="text/template">
        {{#data}}
@@ -44,26 +43,24 @@
     </template>
 
     <div id="crypto-wrapper"><table id="crypto-overview-table"></table></div>
-    <!-- <img src="https://static.coincap.io/assets/icons/btc@2x.png" class="crypto-icon-image" /> -->
 
     <!-- Mustache template for the history modal -->
     <template id="history-modal-template" type="text/template">
         {{#data}}
-            <tr><th>{{symbol}}</th></tr>
+            <tr><th>{{id}}</th></tr>
             <tr><td>Cryptocurrency: {{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
-            <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
-            <tr><td>Supply: {{supply}}</td></tr>
         {{/data}}
     </template>
 
     <div id="modal-wrapper" style="display: none;">
         <div id="history-modal">
-        <table id='history-information'></table>
-        <div id="close-modal" onclick="removeModal()">x</div>
-        <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
-    </div>
+            <table id='history-information'></table>
+            <div id="close-modal" onclick="removeModal()">x</div>
+            <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
+            <button id="save-to-database">Save to Database</button>
+        </div>
         <div id="background-blur"></div>
     </div>
 
