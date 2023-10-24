@@ -41,7 +41,6 @@
 					<th>Amount</th>
 					
 					<th>Total</th>
-					<th>Save</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -56,7 +55,6 @@
 					<td></td>
 					<td></td>
 					<td id="total-value"></td>
-					<td></td>
 					<td></td>
 				</tr>
 			</tfoot>

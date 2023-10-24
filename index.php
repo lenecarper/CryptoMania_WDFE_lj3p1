@@ -60,7 +60,7 @@
             <div id="close-modal" onclick="removeModal()">x</div>
             <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
             <div class='center'>
-                <button class='btn btn-glow' id="save-to-database">Save to Database</button>
+                <button class='button btn-glow' id="save-to-database">Save to Database</button>
             </div>
         </div>
         <div id="background-blur"></div>
