@@ -132,10 +132,10 @@ async function loadModal(id, $this) {
         // Extract the data you want to save (you can customize this part)
         const dataToSave = {
             // Example data, modify this to match your use case
-            coin_name: 'Bitcoin',
-            coin_price: 1245.12,
-            amount_coins: 9,
-            total_value: 900000000
+            coin_name: assets[cryptoId].name,
+            coin_price: assets[cryptoId].priceUsd,
+            amount_coins: 5,
+            total_value: assets[cryptoId].marketCapUsd
         };
 
         // Make an AJAX request to save the data
@@ -143,7 +143,7 @@ async function loadModal(id, $this) {
             url: 'inc/add_coins_db.php', // URL to your PHP backend file
             type: 'POST',
             contentType: 'application/json',
-            data: dataToSave,
+            data: JSON.stringify(dataToSave), // Convert data to a JSON string
             success: function(response) {
                 console.log(response); // Log the server response (success or error message)
             },
