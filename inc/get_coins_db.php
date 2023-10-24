@@ -6,7 +6,7 @@
 	$getAllCoins = "SELECT * FROM cryptofolio";
 
 	$resultGetAllCoins = mysqli_query($con, $getAllCoins);
-
+	
 	$allCoinsArray = array();
 
 	while ($rowAllCoins = mysqli_fetch_assoc($resultGetAllCoins)) {
