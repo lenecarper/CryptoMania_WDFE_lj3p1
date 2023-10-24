@@ -126,6 +126,32 @@ async function loadModal(id, $this) {
 
     $("#history-information").append(renderHistory);
     document.getElementById('modal-wrapper').style.display = "block";
+    
+    // Add an event listener to the "Save to Database" button
+    document.getElementById('save-to-database').addEventListener('click', function() {
+        // Extract the data you want to save (you can customize this part)
+        const dataToSave = {
+            // Example data, modify this to match your use case
+            coin_name: 'Bitcoin',
+            coin_price: 1245.12,
+            amount_coins: 9,
+            total_value: 900000000
+        };
+
+        // Make an AJAX request to save the data
+        $.ajax({
+            url: 'inc/add_coins_db.php', // URL to your PHP backend file
+            type: 'POST',
+            contentType: 'application/json',
+            data: dataToSave,
+            success: function(response) {
+                console.log(response); // Log the server response (success or error message)
+            },
+            error: function(error) {
+                console.error('Error saving data:', error);
+            }
+        });
+    });
 
     // Check if the rendered template is not empty before appending
     if (renderHistory.trim()) {
@@ -197,31 +223,5 @@ function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
-
-// Add an event listener to the "Save to Database" button
-document.getElementById('save-to-database').addEventListener('click', function() {
-    // Extract the data you want to save (you can customize this part)
-    const dataToSave = {
-        // Example data, modify this to match your use case
-        coin_name: coinName,
-        coin_price: coinPrice,
-        amount_coins: amountCoins,
-        total_value: totalValue
-    };
-
-    // Make an AJAX request to save the data
-    $.ajax({
-        url: 'inc/add_coins_db.php', // URL to your PHP backend file
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(dataToSave),
-        success: function(response) {
-            console.log(response); // Log the server response (success or error message)
-        },
-        error: function(error) {
-            console.error('Error saving data:', error);
-        }
-    });
-});
 
 fetchCoinData();
