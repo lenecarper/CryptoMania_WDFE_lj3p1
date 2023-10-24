@@ -9,8 +9,13 @@
 
 body
 {
-    background: #105469;
+    background: #105469 !important;
     font-family: 'Open Sans', sans-serif;
+}
+
+.bg-light
+{
+    background-color: #105469 !important;
 }
 
 #crypto-wrapper
