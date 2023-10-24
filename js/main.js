@@ -124,6 +124,9 @@ async function loadModal(id, $this) {
     var renderHistory = Mustache.render(historyModalTemplate, historyContext);
     console.log(renderHistory);
 
+    $("#history-information").append(renderHistory);
+    document.getElementById('modal-wrapper').style.display = "block";
+
     // Check if the rendered template is not empty before appending
     if (renderHistory.trim()) {
         $("#history-information").append(renderHistory);
@@ -200,14 +203,15 @@ document.getElementById('save-to-database').addEventListener('click', function()
     // Extract the data you want to save (you can customize this part)
     const dataToSave = {
         // Example data, modify this to match your use case
-        name: 'Bitcoin',
-        priceUsd: 50000,
-        marketCapUsd: 900000000000
+        coin_name: coinName,
+        coin_price: coinPrice,
+        amount_coins: amountCoins,
+        total_value: totalValue
     };
 
     // Make an AJAX request to save the data
     $.ajax({
-        url: 'save_crypto_data.php', // URL to your PHP backend file
+        url: 'inc/add_coins_db.php', // URL to your PHP backend file
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(dataToSave),
