@@ -149,12 +149,15 @@ async function loadModal(id, $this) {
 
         // Make an AJAX request to save the data
         $.ajax({
-            url: 'inc/add_coins_db.php', // URL to your PHP backend file
+            // PHP database upload URL as a JSON POST request
+            url: 'inc/add_coins_db.php',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify(dataToSave), // Convert data to a JSON string
+            // Convert data to a JSON string
+            data: JSON.stringify(dataToSave),
+             // Log the server response (success or error message)
             success: function(response) {
-                console.log(response); // Log the server response (success or error message)
+                console.log(response);
             },
             error: function(error) {
                 console.error('Error saving data:', error);
@@ -182,6 +185,7 @@ async function loadModal(id, $this) {
             canvas.chart.destroy();
         }
 
+        // Get a new 2d canvas and chart
         const ctx = canvas.getContext('2d');
         const chart = new Chart(ctx, {
             // Graph options, display time, cryptocurrency price & change border (color)
