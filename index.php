@@ -34,7 +34,7 @@
     <template id="crypto-template" type="text/template">
        {{#processedAssets}}
             <tr><th><img src="https://static.coincap.io/assets/icons/{{symbolLowerCase}}@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
-            <tr><td>{{name}}</td></tr>
+            <tr><td style="font-weight: 800;">{{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>

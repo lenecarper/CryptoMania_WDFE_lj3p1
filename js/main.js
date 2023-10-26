@@ -47,18 +47,24 @@ async function fetchCoinData()
                 volumeUsd24Hr: asset.volumeUsd24Hr,
                 vwap24Hr: asset.vwap24Hr,
                 symbol: asset.symbol,
-                symbolLowerCase: asset.symbol.toLowerCase() // Add symbolLowerCase property
+                symbolLowerCase: asset.symbol.toLowerCase()
             };
         });
 
+        // Push all values into one large array
         assetDataArray.push(processedAssets);
+        // Log all the assets and object values into the console
         console.log('ASSETS.');
         console.log(assetDataArray);
 
+        // Get the template from the HTML
         var coinTemplate = $("#crypto-template").html();
+        // Get all the assets with custom values and add them to the template
         var assetTemplateData = { processedAssets: assetDataArray[0] };
 
+        // Render the template into HTML
         var renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
+        // Append the template to the table
         $("#crypto-overview-table").append(renderTemplate);
 
         // Remove the loading screen once the page loads
@@ -117,10 +123,7 @@ async function loadModal(id, $this) {
         symbolLowerCase: assets[cryptoId].symbol.toLowerCase()
     };
 
-    console.log(historyContext);
-
     var renderHistory = Mustache.render(historyModalTemplate, historyContext);
-    console.log(renderHistory);
 
     $("#history-information").append(renderHistory);
     document.getElementById('modal-wrapper').style.display = "block";
@@ -150,15 +153,6 @@ async function loadModal(id, $this) {
             }
         });
     });
-
-    // Check if the rendered template is not empty before appending
-    if (renderHistory.trim()) {
-        $("#history-information").append(renderHistory);
-        // Display the modal
-        document.getElementById('modal-wrapper').style.display = "block";
-    } else {
-        console.error('Empty template. Data might be missing or incorrect.');
-    }
 
     // Remove the loading screen
     document.getElementById('loading-screen').style.display = "none";

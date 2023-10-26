@@ -167,6 +167,12 @@ tbody tr:hover
     margin: 0.25em;
 }
 
+.learn-more-link
+{
+    color: #0b8ab5;
+    font-weight: 800;
+}
+
 @-webkit-keyframes glow
 {
     0%
@@ -184,18 +190,18 @@ tbody tr:hover
 {
     0%
     {
-        box-shadow: 0 0 0 0 #dc143c;
+        box-shadow: 0 0 0 0 #032d3b;
     }
 
     50%
     {
-        box-shadow: 0 0 30px 0 #dc143c;
+        box-shadow: 0 0 30px 0 #046889;
     }
 }
 
 #save-to-database
 {
-    background: #dc143c;
+    background: #08546e;
     color: #fff;
     font-size: 1.6em;
     font-weight: 600;
