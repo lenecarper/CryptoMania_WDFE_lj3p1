@@ -32,14 +32,14 @@
 
     <!-- Mustache template for cryptocurrency data -->
     <template id="crypto-template" type="text/template">
-       {{#data}}
+       {{#processedAssets}}
             <tr><th><img src="https://static.coincap.io/assets/icons/{{symbolLowerCase}}@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
             <tr><td>{{name}}</td></tr>
             <tr><td>Value: ${{priceUsd}} USD</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
             <tr><td onclick='loadModal("{{rank}}" - 1, this);' id="{{id}}" class="learn-more-link">Learn more about {{name}}</td></tr>
-        {{/data}}
+        {{/processedAssets}}
     </template>
 
     <div id="crypto-wrapper"><table id="crypto-overview-table"></table></div>
@@ -60,7 +60,7 @@
             <div id="close-modal" onclick="removeModal()">x</div>
             <div id='full-graph' style='width: 100%; margin: 0 auto;'><canvas id='cryptoChart'></canvas></div>
             <div class='center'>
-                <button class='button btn-glow' id="save-to-database">Save to Database</button>
+                <button class='button btn-glow' id="save-to-database">Save to wallet</button>
             </div>
         </div>
         <div id="background-blur"></div>

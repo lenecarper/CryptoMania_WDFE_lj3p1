@@ -55,12 +55,10 @@ async function fetchCoinData()
         console.log('ASSETS.');
         console.log(assetDataArray);
 
-        // console.log(processedAssets[0].symbolLowerCase + "wdjkkbdwbhwd");
-
         var coinTemplate = $("#crypto-template").html();
+        var assetTemplateData = { processedAssets: assetDataArray[0] };
 
-        var renderTemplate = Mustache.render(coinTemplate, assetData);
-
+        var renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
         $("#crypto-overview-table").append(renderTemplate);
 
         // Remove the loading screen once the page loads
