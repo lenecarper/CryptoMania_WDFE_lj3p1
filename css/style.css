@@ -161,6 +161,12 @@ tbody tr:hover
     transform: translate(-50%, -50%);
 }
 
+.crypto-icon-image
+{
+    height: 2.5em;
+    margin: 0.25em;
+}
+
 @-webkit-keyframes glow
 {
     0%
