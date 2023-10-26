@@ -173,6 +173,11 @@ tbody tr:hover
     font-weight: 800;
 }
 
+.row-crypto
+{
+    text-align: center;
+}
+
 @-webkit-keyframes glow
 {
     0%

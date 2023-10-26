@@ -103,18 +103,23 @@ async function loadModal(id, $this) {
 
     // Gather the data
     const historyData = await historyCall.json();
+    // Append the history data to an array
     historyDataArray = [historyData];
+    // Log the entire crypto ID and history data into the console
     console.log('HISTORY.');
     console.log(historyDataArray);
     console.log('Full cryptocurrency ID: ' + cryptocurrencyId);
 
     // Get the crypto ID dynamically
     const cryptoId = id;
+    // Log the cryptocurrency ID into the console, create an assets variable
     console.log('Cryptocurrency ID: ' + cryptoId);
     const assets = assetDataArray[0];
 
+    // Get the history modal template from the HTML
     var historyModalTemplate = $("#history-modal-template").html();
 
+    // Define the history context
     const historyContext = {
         id: assets[cryptoId].id,
         name: assets[cryptoId].name,
@@ -123,14 +128,17 @@ async function loadModal(id, $this) {
         symbolLowerCase: assets[cryptoId].symbol.toLowerCase()
     };
 
+    // Create a mustache render request with the modal history data
     var renderHistory = Mustache.render(historyModalTemplate, historyContext);
-
+    // Append the modal history data to the history information template
     $("#history-information").append(renderHistory);
+
+    // Display the modal
     document.getElementById('modal-wrapper').style.display = "block";
     
     // Add an event listener to the "Save to Database" button
     document.getElementById('save-to-database').addEventListener('click', function() {
-        // Extract the data you want to save (you can customize this part)
+        // Data to save into the database (from assets)
         const dataToSave = {
             // Example data, modify this to match your use case
             coin_name: assets[cryptoId].name,

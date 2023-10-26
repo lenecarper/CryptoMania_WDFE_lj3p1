@@ -34,14 +34,14 @@
 		<table class="table" id="crypto-folio-table">
 			<thead>
 				<tr>
-					<th>Id</th>
-					<th>Bought on</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Amount</th>
+					<th class="row-crypto">Id</th>
+					<th class="row-crypto">Bought on</th>
+					<th class="row-crypto">Name</th>
+					<th class="row-crypto">Price</th>
+					<th class="row-crypto">Amount</th>
 					
-					<th>Total</th>
-					<th>Delete</th>
+					<th class="row-crypto">Total</th>
+					<th class="row-crypto">Delete</th>
 				</tr>
 			</thead>
 			<tbody>
