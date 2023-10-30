@@ -42,6 +42,7 @@
 					<th class="row-crypto">Amount</th>
 					
 					<th class="row-crypto">Total</th>
+					<th class="row-crypto">Save</th>
 					<th class="row-crypto">Delete</th>
 				</tr>
 			</thead>

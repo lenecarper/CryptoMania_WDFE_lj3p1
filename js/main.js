@@ -145,7 +145,7 @@ async function loadModal(id, $this) {
             // Example data, modify this to match your use case
             coin_name: assets[cryptoId].name,
             coin_price: assets[cryptoId].priceUsd,
-            amount_coins: 5,
+            amount_coins: 1,
             total_value: assets[cryptoId].marketCapUsd
         };
 
