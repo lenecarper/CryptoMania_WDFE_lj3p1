@@ -67,7 +67,6 @@
     </div>
 
     <div id="loading-screen"><img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div><br><h1 style="text-align: center;">Loading..</h1>
-    <?= $_SESSION['user_id']; ?>
 </body>
 
 <!-- jQuery -->

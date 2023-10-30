@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+include('functions.php');
 
 // Get the raw POST data as a string
 $inputData = file_get_contents("php://input");
@@ -12,10 +13,11 @@ $coinName = mysqli_real_escape_string($con, $data['coin_name']);
 $coinPrice = floatval($data['coin_price']); // Convert to float
 $amountCoins = intval($data['amount_coins']); // Convert to integer
 $totalValue = floatval($data['total_value']); // Convert to float
+$userId = $_SESSION['user_id'];
 
 // Insert data into the database
-$addCoin = "INSERT INTO cryptofolio (id, name, price, amount, totalValue, bought_on) 
-            VALUES (null, '$coinName', '$coinPrice', '$amountCoins', '$totalValue', NOW())";
+$addCoin = "INSERT INTO cryptofolio (id, name, price, amount, totalValue, bought_on, from_user) 
+            VALUES (null, '$coinName', '$coinPrice', '$amountCoins', '$totalValue', NOW(), '$userId')";
 
 if(mysqli_query($con, $addCoin)) {
     echo "Successfully added to your cryptofolio";
