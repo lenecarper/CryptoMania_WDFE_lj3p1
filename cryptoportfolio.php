@@ -1,10 +1,11 @@
+<?php include ("inc/functions.php"); ?>
 <!DOCTYPE>
 <html>
 <head>
 
 	<meta charset="UTF-8">
 
-	<title>CryptoMania - Lesson 3</title>
+	<title>Cryptofolio</title>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css" >
@@ -14,7 +15,7 @@
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Cryptomania</a>
+				<a class="navbar-brand" href="javascript:void(0);">Cryptomania</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
@@ -62,18 +63,18 @@
 	</div>
 
 	<template id="coins-cryptofolio-template">
-		{{#.}}
+		{{#data}}
 			<tr>
-				<td>{{id}}</td>
-				<td>{{bought_on}}</td>
-				<td>{{name}}</td>
-				<td >{{price}}</td>
-				<td><input type="number" value="{{amount}}" class="amount-input" /></td>
-				<td class="price-total">{{totalValue}}</td>
-				<td><button type="button" class="btn btn-warning save-coin-btn" value="{{id}}">Save</button></td>
-				<td><button type="button" class="btn btn-danger" value="{{id}}">Delete</button></td>
+				<td class="row-crypto">{{id}}</td>
+				<td class="row-crypto">{{bought_on}}</td>
+				<td class="row-crypto">{{name}}</td>
+				<td class="row-crypto">{{price}}</td>
+				<td class="row-crypto"><input type="number" value="{{amount}}" class="amount-input" /></td>
+				<td class="row-crypto">{{totalValue}}</td>
+				<td class="row-crypto"><button type="button" class="btn btn-warning save-coin-btn" value="{{id}}">Save</button></td>
+				<td class="row-crypto"><button type="button" class="btn btn-danger" value="{{id}}">Delete</button></td>
 			</tr>
-		{{/.}}
+		{{/data}}
 	</template>
 
 

@@ -62,14 +62,16 @@ async function fetchCoinData()
         // Get all the assets with custom values and add them to the template
         var assetTemplateData = { processedAssets: assetDataArray[0] };
 
-        // Render the template into HTML
-        var renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
-        // Append the template to the table
-        $("#crypto-overview-table").append(renderTemplate);
+        if (coinTemplate)
+        {
+            // Render the template into HTML
+            var renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
+            // Append the template to the table
+            $("#crypto-overview-table").append(renderTemplate);
 
-        // Remove the loading screen once the page loads
-        document.getElementById('loading-screen').style.display = "none";
-
+            // Remove the loading screen once the page loads
+            document.getElementById('loading-screen').style.display = "none";
+        }
     // Catch errors beforehand to prevent crashing of the web application
     } catch(error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -227,5 +229,27 @@ function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
 }
+
+$(document).ready(function() {
+    // Fetch data from the server
+    $.ajax({
+        url: 'inc/get_coins_db.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // Use Mustache.js to render the template
+            var cryptofolioTemplate = $('#coins-cryptofolio-template').html();
+            var renderedCryptofolio = Mustache.render(cryptofolioTemplate, { data: data });
+
+            // Append the rendered data to the table body
+            $('#crypto-folio-table tbody').html(renderedCryptofolio);
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            // Handle errors here
+            console.error(xhr.responseText);
+        }
+    });
+});
 
 fetchCoinData();
