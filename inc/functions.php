@@ -95,6 +95,9 @@ function loginUser($loginUsername, $loginPassword)
 
 if (isset($_POST['submit-login']))
 {
+    // Connect to the MySQL database
+    $db = new mysqli('localhost', 'root', '', 'cryptomania');
+    
     $loginUsername = $_POST['username-login'];
     $loginPassword = $_POST['password-login'];
 
@@ -104,8 +107,15 @@ if (isset($_POST['submit-login']))
     // Display the result of the registration attempt
     echo $loginResult;
 
-    $_SESSION['user_id'] = "SELECT `user_id` FROM users WHERE username = '$loginUsername'";
-
+    $select_user = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$loginUsername'") or die('Could not find the specified user.');
+    if (mysqli_num_rows($select_user) > 0) 
+    {
+        $fetch_user = mysqli_fetch_assoc($select_user);
+        if ($fetch_user['user_id'] != "") 
+        {
+            $_SESSION['user_id'] = $fetch_user['user_id'];
+        }
+    }
     // Redirect user to index
     header('location:index.php');
 }
