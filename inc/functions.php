@@ -102,6 +102,9 @@ if (isset($_POST['submit-login']))
 
     // Display the result of the registration attempt
     echo $loginResult;
+
+    // Redirect user to index
+    header('location:index.php');
 }
 
 ?>
