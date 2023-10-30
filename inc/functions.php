@@ -1,4 +1,5 @@
 <?php
+session_start();
 function registerUser($username, $password)
 {
     // Connect to the MySQL database
@@ -66,7 +67,7 @@ function loginUser($loginUsername, $loginPassword)
     }
 
     // Retrieve the user's hashed password from the database
-    $selectQuery = $db->prepare("SELECT `id`, `password` FROM users WHERE username = ?");
+    $selectQuery = $db->prepare("SELECT `user_id`, `password` FROM users WHERE username = ?");
     $selectQuery->bind_param("s", $loginUsername);
     $selectQuery->execute();
     $selectQuery->bind_result($userId, $hashedPassword);
@@ -102,6 +103,8 @@ if (isset($_POST['submit-login']))
 
     // Display the result of the registration attempt
     echo $loginResult;
+
+    $_SESSION['user_id'] = "SELECT `user_id` FROM users WHERE username = '$loginUsername'";
 
     // Redirect user to index
     header('location:index.php');
