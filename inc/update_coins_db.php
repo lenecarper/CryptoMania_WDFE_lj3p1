@@ -8,9 +8,9 @@ $inputData = file_get_contents("php://input");
 // Decode the JSON string into a PHP associative array
 $data = json_decode($inputData, true);
 
-// Validate and sanitize the input data
-$id = intval($data['id']); // Convert to integer
-$amount = intval($data['amount']); // Convert to integer
+// Validate input data, convert to integers
+$id = intval($data['id']);
+$amount = intval($data['amount']);
 
 // Update data in the database
 $updateCoin = "UPDATE cryptofolio SET amount = '$amount' WHERE id = '$id'";

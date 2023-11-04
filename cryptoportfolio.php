@@ -70,7 +70,7 @@
 				<td class="row-crypto">{{bought_on}}</td>
 				<td class="row-crypto">{{name}}</td>
 				<td class="row-crypto">{{price}}</td>
-				<td class="row-crypto"><input type="number" value="{{amount}}" class="amount-input" /></td>
+				<td class="row-crypto"><input type="number" value="{{amount}}" class="amount-input" style="background-color: #147393; border-color: #014055; color: white; text-align: center;"/></td>
 				<td class="row-crypto">{{totalValue}}</td>
 				<td class="row-crypto"><button type="button" name="update-database" class="button btn-glow" value="{{id}}" id="update-database-button">Update</button></td>
 				<td class="row-crypto"><button type="button" name="delete-database" class="button btn-glow" value="{{id}}" id="delete-database-button">Delete</button></td>

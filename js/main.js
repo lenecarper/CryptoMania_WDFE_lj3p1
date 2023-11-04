@@ -281,6 +281,30 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Event listener for delete button clicks
+    $('#crypto-folio-table').on('click', '#delete-database-button', function() {
+        // Get the ID of the clicked row
+        const id = $(this).val();
+
+        // Make an AJAX request to delete the record from the database
+        $.ajax({
+            url: 'inc/delete_coins_db.php',
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ id: id }),
+            contentType: 'application/json',
+            success: function(response) {
+                // Handle the success response from the server
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle errors here
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
 });
 
 fetchCoinData();
