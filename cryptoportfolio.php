@@ -25,7 +25,7 @@
 						<a class="nav-link active" href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="cryptoportfolio.php">Crypto portfolio</a>
+						<a class="nav-link" href="cryptoportfolio.php">Cryptfolio</a>
 					</li>
 				</ul>
 				</div>
@@ -72,8 +72,8 @@
 				<td class="row-crypto">{{price}}</td>
 				<td class="row-crypto"><input type="number" value="{{amount}}" class="amount-input" /></td>
 				<td class="row-crypto">{{totalValue}}</td>
-				<td class="row-crypto"><button type="button" class="btn btn-warning save-coin-btn" value="{{id}}">Save</button></td>
-				<td class="row-crypto"><button type="button" class="btn btn-danger" value="{{id}}">Delete</button></td>
+				<td class="row-crypto"><button type="button" class="button btn-glow" value="{{id}}" id="update-database-button">Update</button></td>
+				<td class="row-crypto"><button type="button" class="button btn-glow" value="{{id}}" id="delete-database-button">Delete</button></td>
 			</tr>
 		{{/data}}
 	</template>

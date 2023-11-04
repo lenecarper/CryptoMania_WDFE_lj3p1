@@ -204,6 +204,32 @@ tbody tr:hover
     }
 }
 
+@keyframes glow-update
+{
+    0%
+    {
+        box-shadow: 0 0 0 0 #373b03;
+    }
+
+    50%
+    {
+        box-shadow: 0 0 30px 0 #898204;
+    }
+}
+
+@keyframes glow-delete
+{
+    0%
+    {
+        box-shadow: 0 0 0 0 #3b0303;
+    }
+
+    50%
+    {
+        box-shadow: 0 0 30px 0 #890404;
+    }
+}
+
 #save-to-database
 {
     background: #08546e;
@@ -216,4 +242,59 @@ tbody tr:hover
     box-shadow: 0 0 0 0 #dc143c;
     -webkit-animation: glow 1.4s linear infinite;
     animation: glow 1.4s linear infinite;
+}
+
+#update-database-button
+{
+    background: #6e6c08;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 #dc143c;
+    border-radius: 10%;
+}
+
+#update-database-button:hover
+{
+    background: #d7d408;
+    transition: all 0.1s ease-in;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 #dc143c;
+    -webkit-animation: glow 1.4s linear infinite;
+    animation: glow-update 1.4s linear infinite;
+    border-radius: 10%;
+}
+
+#delete-database-button
+{
+    background: #6e0808;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 #dc143c;
+    border-radius: 10%;
+}
+
+
+#delete-database-button:hover
+{
+    background: #c60a0a;
+    transition: all 0.1s ease-in;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 #dc143c;
+    -webkit-animation: glow 1.4s linear infinite;
+    animation: glow-delete 1.4s linear infinite;
+    border-radius: 10%;
 }

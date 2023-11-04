@@ -23,7 +23,7 @@
                     <a class="nav-link active" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cryptoportfolio.php">Crypto portfolio</a>
+                    <a class="nav-link" href="cryptoportfolio.php">Cryptofolio</a>
                 </li>
             </ul>
             </div>
