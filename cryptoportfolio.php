@@ -1,4 +1,4 @@
-<?php include ("inc/functions.php"); ?>
+<?php require ("inc/functions.php"); ?>
 <!DOCTYPE>
 <html>
 <head>
@@ -72,8 +72,8 @@
 				<td class="row-crypto">{{price}}</td>
 				<td class="row-crypto"><input type="number" value="{{amount}}" class="amount-input" /></td>
 				<td class="row-crypto">{{totalValue}}</td>
-				<td class="row-crypto"><button type="button" class="button btn-glow" value="{{id}}" id="update-database-button">Update</button></td>
-				<td class="row-crypto"><button type="button" class="button btn-glow" value="{{id}}" id="delete-database-button">Delete</button></td>
+				<td class="row-crypto"><button type="button" name="update-database" class="button btn-glow" value="{{id}}" id="update-database-button">Update</button></td>
+				<td class="row-crypto"><button type="button" name="delete-database" class="button btn-glow" value="{{id}}" id="delete-database-button">Delete</button></td>
 			</tr>
 		{{/data}}
 	</template>

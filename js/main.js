@@ -250,6 +250,37 @@ $(document).ready(function() {
             console.error(xhr.responseText);
         }
     });
+
+    // Event listener for update button clicks
+    $('#crypto-folio-table').on('click', '#update-database-button', function() {
+        // Get the ID of the clicked row
+        const id = $(this).val();
+        // Get the updated amount from the input field in the same row
+        const amount = $(this).closest('tr').find('.amount-input').val();
+
+        // Create an object with the data to be updated
+        const dataToUpdate = {
+            id: id,
+            amount: amount
+        };
+
+        // Make an AJAX request to update the database
+        $.ajax({
+            url: 'inc/update_coins_db.php',
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(dataToUpdate),
+            contentType: 'application/json',
+            success: function(response) {
+                // Handle the success response from the server
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle errors here
+                console.error(xhr.responseText);
+            }
+        });
+    });
 });
 
 fetchCoinData();
