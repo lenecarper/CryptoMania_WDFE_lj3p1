@@ -274,6 +274,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle the success response from the server
                 console.log(response);
+                alert('Successfully updated ' + id);
             },
             error: function(xhr, status, error) {
                 // Handle errors here
@@ -297,6 +298,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle the success response from the server
                 console.log(response);
+                alert('Successfully deleted ' + id);
             },
             error: function(xhr, status, error) {
                 // Handle errors here
