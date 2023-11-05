@@ -21,6 +21,7 @@ $addCoin = "INSERT INTO cryptofolio (id, name, price, amount, totalValue, bought
 
 if(mysqli_query($con, $addCoin)) {
     echo "Successfully added to your cryptofolio";
+    $_SESSION['successMessage'] = 'Successfully added coin to your cryptofolio!';
 } else {
     echo "Oops, can not add a coin to your cryptofolio: " . $addCoin . "<br />" . mysqli_error($con);
 }

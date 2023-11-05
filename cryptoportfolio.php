@@ -1,4 +1,10 @@
-<?php require ("inc/functions.php"); ?>
+<?php require ('inc/functions.php'); 
+
+if (!($_SESSION['loggedIn']))
+{
+    header('location:login.php');
+} ?>
+
 <!DOCTYPE>
 <html>
 <head>

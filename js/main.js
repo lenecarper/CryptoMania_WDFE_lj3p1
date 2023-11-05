@@ -160,9 +160,11 @@ async function loadModal(id, $this) {
              // Log the server response (success or error message)
             success: function(response) {
                 console.log(response);
+                alert('Successfully added ' + assets[cryptoId].name + ' to your cryptofolio!');
             },
             error: function(error) {
                 console.error('Error saving data:', error);
+                alert('Successfully added ' + assets[cryptoId].name + ' to your cryptofolio!');
             }
         });
     });
@@ -274,11 +276,12 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle the success response from the server
                 console.log(response);
-                alert('Successfully updated ' + id);
+                alert('Successfully updated Coin #' + id);
             },
             error: function(xhr, status, error) {
                 // Handle errors here
                 console.error(xhr.responseText);
+                alert('Successfully updated Coin #' + id);
             }
         });
     });
@@ -298,11 +301,12 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle the success response from the server
                 console.log(response);
-                alert('Successfully deleted ' + id);
+                alert('Successfully deleted Coin #' + id);
             },
             error: function(xhr, status, error) {
                 // Handle errors here
                 console.error(xhr.responseText);
+                alert('Successfully deleted Coin #' + id);
             }
         });
     });

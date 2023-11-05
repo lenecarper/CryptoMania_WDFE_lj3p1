@@ -114,10 +114,11 @@ if (isset($_POST['submit-login']))
         if ($fetch_user['user_id'] != "") 
         {
             $_SESSION['user_id'] = $fetch_user['user_id'];
+            $_SESSION['loggedIn'] = true;
+            // Redirect user to index
+            header('location:index.php');
         }
     }
-    // Redirect user to index
-    header('location:index.php');
 }
 
 ?>
