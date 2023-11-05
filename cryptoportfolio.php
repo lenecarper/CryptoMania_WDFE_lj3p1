@@ -17,7 +17,7 @@ if (!($_SESSION['loggedIn']))
 	<link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
-
+	<!-- Navigation bar -->
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
 			<div class="container-fluid">
@@ -38,6 +38,7 @@ if (!($_SESSION['loggedIn']))
 			</div>
 		</nav>
 
+		<!-- Table to insert the fetched/saved crypto data into -->
 		<table class="table" id="crypto-folio-table">
 			<thead>
 				<tr>
@@ -52,9 +53,7 @@ if (!($_SESSION['loggedIn']))
 					<th class="row-crypto">Delete</th>
 				</tr>
 			</thead>
-			<tbody>
-
-			</tbody>
+			<tbody></tbody>
 			<tfoot>
 				<tr>
 					<td></td>
@@ -69,6 +68,7 @@ if (!($_SESSION['loggedIn']))
 		</table>
 	</div>
 
+	<!-- Template to load the previously fetched data into -->
 	<template id="coins-cryptofolio-template">
 		{{#data}}
 			<tr>
@@ -97,7 +97,7 @@ if (!($_SESSION['loggedIn']))
 	<!-- Chart JS -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     
-    <!-- Custom js  -->
+    <!-- Main JS file  -->
 	<script src="js/main.js"></script>
 </body>
 </html>

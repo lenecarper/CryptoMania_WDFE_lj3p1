@@ -5,19 +5,23 @@ include('functions.php');
 // Get the raw POST data as a string
 $inputData = file_get_contents("php://input");
 
-// Decode the JSON string into a PHP associative array
+// Decode the JSON string into a PHP array
 $data = json_decode($inputData, true);
 
-// Validate and sanitize the input data
-$id = intval($data['id']); // Convert to integer
+// Validate input data, convert to integers
+$id = intval($data['id']);
 
-// Delete data from the database
+// Delete data from the database where the ID is the corresponding ID
 $deleteCoin = "DELETE FROM cryptofolio WHERE id = '$id'";
 
-if(mysqli_query($con, $deleteCoin)) {
+// Execute the query, check whether the request was valid
+if(mysqli_query($con, $deleteCoin))
+{
     echo "Successfully deleted the record from your cryptofolio";
-} else {
-    echo "Oops, can not delete the record from your cryptofolio: " . $deleteCoin . "<br />" . mysqli_error($con);
+}
+else
+{
+    echo "An error occured while deleting your coin: " . $deleteCoin . "<br />" . mysqli_error($con);
 }
 
 // Close database connection

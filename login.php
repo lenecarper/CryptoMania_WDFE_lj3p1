@@ -8,6 +8,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css" />
 </head>
+<!-- Container for the login page, uses a PHP POST form -->
 <body class="container">  
   <div class="login-container">
     <div class="login-content">

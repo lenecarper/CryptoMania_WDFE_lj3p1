@@ -1,5 +1,8 @@
 <?php
+// Start a session
 session_start();
+
+// Register user function
 function registerUser($username, $password)
 {
     // Connect to the MySQL database
@@ -18,6 +21,7 @@ function registerUser($username, $password)
     $checkQuery->fetch();
     $checkQuery->close();
 
+    // If any results are found, throw an error
     if ($count > 0)
     {
         return "Username already exists. Please choose a different username.";
@@ -30,22 +34,27 @@ function registerUser($username, $password)
     $insertQuery = $db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
     $insertQuery->bind_param("ss", $username, $hashedPassword);
 
+    // Check whether the query was executed successfully
     if ($insertQuery->execute())
     {
+        // Close the query, redirect to login page
         $insertQuery->close();
         $db->close();
         header('location:login.php');
     }
     else
     {
+        // Close the query, throw an error
         $insertQuery->close();
         $db->close();
         return "Error registering user: " . $db->error;
     }
 }
 
+// Check whether the registration button has been clicked
 if (isset($_POST['submit-register']))
 {
+    // Get variables through form POST requests
     $username = $_POST['username-register'];
     $password = $_POST['password-register'];
 
@@ -56,6 +65,7 @@ if (isset($_POST['submit-register']))
     echo $registrationResult;
 }
 
+// Login user function
 function loginUser($loginUsername, $loginPassword)
 {
     // Connect to the MySQL database
@@ -76,28 +86,35 @@ function loginUser($loginUsername, $loginPassword)
 
     // Check if the user was found in the database
     if ($userId) {
-        // Verify the provided password against the stored hash
-        if (password_verify($loginPassword, $hashedPassword)) {
-            // Password is correct; you can perform additional actions here if needed.
+        // Verify the provided password with the stored hash
+        if (password_verify($loginPassword, $hashedPassword))
+        {
+            // Redirect to homepage if valid
             $db->close();
             header('location:index.php');
-        } else {
-            // Password is incorrect
+        }
+        else
+        {
+            // Return an error if invalid
             $db->close();
             return "Incorrect password.";
         }
-    } else {
-        // User not found
+    }
+    else
+    {
+        // If no user corresponds with the credentials, throw an error
         $db->close();
         return "User not found.";
     }
 }
 
+// Check whether the login button has been clicked
 if (isset($_POST['submit-login']))
 {
     // Connect to the MySQL database
     $db = new mysqli('localhost', 'root', '', 'cryptomania');
     
+    // Get variables through form POST requests
     $loginUsername = $_POST['username-login'];
     $loginPassword = $_POST['password-login'];
 
@@ -107,7 +124,9 @@ if (isset($_POST['submit-login']))
     // Display the result of the registration attempt
     echo $loginResult;
 
+    // Run a query to select all users with the given credentials or die with an error code
     $select_user = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$loginUsername'") or die('Could not find the specified user.');
+    // If any results are found, fetch the user data and redirect to the homepage
     if (mysqli_num_rows($select_user) > 0) 
     {
         $fetch_user = mysqli_fetch_assoc($select_user);

@@ -5,25 +5,28 @@ include('functions.php');
 // Get the raw POST data as a string
 $inputData = file_get_contents("php://input");
 
-// Decode the JSON string into a PHP associative array
+// Decode the JSON string into a PHP array
 $data = json_decode($inputData, true);
 
-// Validate and sanitize the input data
+// Validate input data, convert to correct values (float, int)
 $coinName = mysqli_real_escape_string($con, $data['coin_name']);
-$coinPrice = floatval($data['coin_price']); // Convert to float
-$amountCoins = intval($data['amount_coins']); // Convert to integer
-$totalValue = floatval($data['total_value']); // Convert to float
+$coinPrice = floatval($data['coin_price']);
+$amountCoins = intval($data['amount_coins']);
+$totalValue = floatval($data['total_value']);
 $userId = $_SESSION['user_id'];
 
 // Insert data into the database
-$addCoin = "INSERT INTO cryptofolio (id, name, price, amount, totalValue, bought_on, from_user) 
-            VALUES (null, '$coinName', '$coinPrice', '$amountCoins', '$totalValue', NOW(), '$userId')";
+$addCoin = "INSERT INTO cryptofolio (id, name, price, amount, totalValue, bought_on, from_user) VALUES (null, '$coinName', '$coinPrice', '$amountCoins', '$totalValue', NOW(), '$userId')";
 
-if(mysqli_query($con, $addCoin)) {
+// Execute the query, check whether the request was valid
+if(mysqli_query($con, $addCoin))
+{
     echo "Successfully added to your cryptofolio";
     $_SESSION['successMessage'] = 'Successfully added coin to your cryptofolio!';
-} else {
-    echo "Oops, can not add a coin to your cryptofolio: " . $addCoin . "<br />" . mysqli_error($con);
+}
+else
+{
+    echo "An error occured while adding your coin: " . $addCoin . "<br />" . mysqli_error($con);
 }
 
 // Close database connection

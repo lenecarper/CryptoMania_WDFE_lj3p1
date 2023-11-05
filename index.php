@@ -16,6 +16,7 @@ if (!($_SESSION['loggedIn']))
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Cryptomania</a>
@@ -47,6 +48,7 @@ if (!($_SESSION['loggedIn']))
         {{/processedAssets}}
     </template>
 
+    <!-- Table to insert the crypto data into -->
     <div id="crypto-wrapper"><table id="crypto-overview-table"></table></div>
 
     <!-- Mustache template for the history modal -->
@@ -59,6 +61,7 @@ if (!($_SESSION['loggedIn']))
         {{/data}}
     </template>
 
+    <!-- Modal to insert the modal data into -->
     <div id="modal-wrapper" style="display: none;">
         <div id="history-modal">
             <table id='history-information'></table>
@@ -71,6 +74,7 @@ if (!($_SESSION['loggedIn']))
         <div id="background-blur"></div>
     </div>
 
+    <!-- Placeholder loading screen while the data gets fetched from the API -->
     <div id="loading-screen"><img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" /></div><br><h1 style="text-align: center;">Loading..</h1>
 </body>
 
@@ -83,5 +87,6 @@ if (!($_SESSION['loggedIn']))
 <!-- Mustache JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- Main JS file -->
 <script src="js/main.js"></script>
 </html>
