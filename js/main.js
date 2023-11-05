@@ -5,12 +5,14 @@ const apiUrl = 'https://api.coincap.io/v2';
 const assetDataArray = [];
 let historyDataArray = [];
 
-// Placeholder ID, replace dynamically in the future
+// Current cryptocurrency coin's ID
 let cryptocurrencyId;
 
+// Asynchronous function to fetch the coin data
 async function fetchCoinData()
 {
     try {
+        // CoinCap API key
         const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
 
         // Make the GET request
@@ -62,6 +64,7 @@ async function fetchCoinData()
         // Get all the assets with custom values and add them to the template
         var assetTemplateData = { processedAssets: assetDataArray[0] };
 
+        // If the coinTemplate exists, render it with MustacheJS
         if (coinTemplate)
         {
             // Render the template into HTML
@@ -78,7 +81,7 @@ async function fetchCoinData()
     }
 }
 
-// Load the history modal, add a line chart using chart.js
+// Load the history modal, add a line chart using Chart.js
 async function loadModal(id, $this) {
     const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
     // Calculate timestamps for the past week
@@ -86,6 +89,7 @@ async function loadModal(id, $this) {
     // 7 days in milliseconds
     const startTimestamp = endTimestamp - (7 * 24 * 60 * 60 * 1200);
 
+    // Get the current cryptocurrency coin's ID dynamically
     cryptocurrencyId = $this.id;
     console.log(cryptocurrencyId + ' - Full ID');
 
@@ -142,7 +146,6 @@ async function loadModal(id, $this) {
     document.getElementById('save-to-database').addEventListener('click', function() {
         // Data to save into the database (from assets)
         const dataToSave = {
-            // Example data, modify this to match your use case
             coin_name: assets[cryptoId].name,
             coin_price: assets[cryptoId].priceUsd,
             amount_coins: 1,
@@ -173,7 +176,7 @@ async function loadModal(id, $this) {
     document.getElementById('loading-screen').style.display = "none";
 
 
-    // Create the line chart with graph.js (loaded in index)
+    // Create the line chart with Chart.js (loaded in index)
     function createLineChart()
     {
         // Extract the datetime and prices from the API data
@@ -226,7 +229,7 @@ async function loadModal(id, $this) {
     createLineChart();
 }
 
-// Remove the modal by displaying it as none when the function is activated
+// Remove the modal by displaying it as none when the function is called
 function removeModal()
 {
     document.getElementById('modal-wrapper').style.display = "none";
@@ -248,7 +251,7 @@ $(document).ready(function() {
             console.log(data);
         },
         error: function(xhr, status, error) {
-            // Handle errors here
+            // Error handling
             console.error(xhr.responseText);
         }
     });
@@ -279,7 +282,7 @@ $(document).ready(function() {
                 alert('Successfully updated Coin #' + id);
             },
             error: function(xhr, status, error) {
-                // Handle errors here
+                // Error handling
                 console.error(xhr.responseText);
                 alert('Successfully updated Coin #' + id);
             }
@@ -291,7 +294,7 @@ $(document).ready(function() {
         // Get the ID of the clicked row
         const id = $(this).val();
 
-        // Make an AJAX request to delete the record from the database
+        // Make an AJAX request to delete a record from the database
         $.ajax({
             url: 'inc/delete_coins_db.php',
             method: 'POST',
@@ -304,7 +307,7 @@ $(document).ready(function() {
                 alert('Successfully deleted Coin #' + id);
             },
             error: function(xhr, status, error) {
-                // Handle errors here
+                // Error handling
                 console.error(xhr.responseText);
                 alert('Successfully deleted Coin #' + id);
             }
@@ -313,4 +316,5 @@ $(document).ready(function() {
 
 });
 
+// Call the main coin data function to fetch all data
 fetchCoinData();
