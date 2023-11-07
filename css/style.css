@@ -298,3 +298,39 @@ tbody tr:hover
     animation: glow-delete 1.4s linear infinite;
     border-radius: 10%;
 }
+
+/* Add this style to your existing CSS file */
+.exchange-container
+{
+    background-color: #014055;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    margin: 1em;
+}
+
+.exchange-container li
+{
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.exchange-container a:active
+{
+    color: red;
+}
+
+li, ul
+{
+    list-style: none;
+}
+
+.title
+{
+    padding: 0.5em;
+    color: #00779e;
+}

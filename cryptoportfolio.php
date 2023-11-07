@@ -17,26 +17,28 @@ if (!($_SESSION['loggedIn']))
 	<link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
-	<!-- Navigation bar -->
-	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="javascript:void(0);">Cryptomania</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link active" href="index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="cryptoportfolio.php">Cryptfolio</a>
-					</li>
-				</ul>
-				</div>
-			</div>
-		</nav>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cryptomania</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cryptoportfolio.php">Cryptofolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="exchanges.php">Exchanges</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
 
 		<!-- Table to insert the fetched/saved crypto data into -->
 		<table class="table" id="crypto-folio-table">

@@ -31,6 +31,9 @@ if (!($_SESSION['loggedIn']))
                 <li class="nav-item">
                     <a class="nav-link" href="cryptoportfolio.php">Cryptofolio</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="exchanges.php">Exchanges</a>
+                </li>
             </ul>
             </div>
         </div>
@@ -41,7 +44,8 @@ if (!($_SESSION['loggedIn']))
        {{#processedAssets}}
             <tr><th><img src="https://static.coincap.io/assets/icons/{{symbolLowerCase}}@2x.png" class="crypto-icon-image" />{{symbol}}</th></tr>
             <tr><td style="font-weight: 800;">{{name}}</td></tr>
-            <tr><td>Value: ${{priceUsd}} USD</td></tr>
+            <tr><td>USD Value: ${{priceUsd}} USD</td></tr>
+            <tr><td>EUR Value: €{{priceEuro}} EUR</td></tr>
             <tr><td>Market cap: ${{marketCapUsd}}</td></tr>
             <tr><td>Trade volume past 24 hours: ${{volumeUsd24Hr}}</td></tr>
             <tr><td onclick='loadModal("{{rank}}" - 1, this);' id="{{id}}" class="learn-more-link">Learn more about {{name}}</td></tr>
