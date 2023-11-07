@@ -9,25 +9,33 @@ let historyDataArray = [];
 let cryptocurrencyId;
 
 // Asynchronous function to fetch the coin data
-async function fetchCoinData()
-{
+async function fetchCoinData() {
     try {
+        // Default conversion rate (1 USD = 0.85 EUR)
+        let usdToEuroConversionRate = 0.85;
+
+        // Fetch CoinCap USD rate
+        const usdRateResponse = await fetch('https://api.coincap.io/v2/rates/usd');
+        if (usdRateResponse.ok) {
+            const usdRateData = await usdRateResponse.json();
+            if (usdRateData && usdRateData.data && usdRateData.data.rateUsd) {
+                usdToEuroConversionRate = 1 / usdRateData.data.rateUsd;
+            }
+        }
+
         // CoinCap API key
         const apiKey = '829151b9-2424-46c2-9acb-7bf82aec9f3b';
 
         // Make the GET request
-        const assetCall = await fetch(`https://api.coincap.io/v2/assets`, {
+        const assetCall = await fetch(`${apiUrl}/assets`, {
             method: 'GET',
-            // Give authorization headers with the API key
-            headers:
-            {
+            headers: {
                 'Authorization': `Bearer ${apiKey}`,
             },
-        })
+        });
 
         // Check if the request went through
-        if (!assetCall.ok)
-        {
+        if (!assetCall.ok) {
             throw new Error('Error fetching data from `assets`');
         }
 
@@ -49,37 +57,38 @@ async function fetchCoinData()
                 volumeUsd24Hr: asset.volumeUsd24Hr,
                 vwap24Hr: asset.vwap24Hr,
                 symbol: asset.symbol,
-                symbolLowerCase: asset.symbol.toLowerCase()
+                symbolLowerCase: asset.symbol.toLowerCase(),
+                priceEuro: (parseFloat(asset.priceUsd) * usdToEuroConversionRate).toFixed(2),
             };
         });
 
         // Push all values into one large array
         assetDataArray.push(processedAssets);
-        // Log all the assets and object values into the console
-        console.log('ASSETS.');
+
         console.log(assetDataArray);
 
         // Get the template from the HTML
-        var coinTemplate = $("#crypto-template").html();
+        const coinTemplate = $("#crypto-template").html();
         // Get all the assets with custom values and add them to the template
-        var assetTemplateData = { processedAssets: assetDataArray[0] };
+        const assetTemplateData = { processedAssets: assetDataArray[0] };
 
         // If the coinTemplate exists, render it with MustacheJS
-        if (coinTemplate)
-        {
+        if (coinTemplate) {
             // Render the template into HTML
-            var renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
+            const renderTemplate = Mustache.render(coinTemplate, assetTemplateData);
             // Append the template to the table
             $("#crypto-overview-table").append(renderTemplate);
 
             // Remove the loading screen once the page loads
             document.getElementById('loading-screen').style.display = "none";
         }
-    // Catch errors beforehand to prevent crashing of the web application
-    } catch(error) {
+        // Catch errors beforehand to prevent crashing of the web application
+    } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
 }
+
+
 
 // Load the history modal, add a line chart using Chart.js
 async function loadModal(id, $this) {
