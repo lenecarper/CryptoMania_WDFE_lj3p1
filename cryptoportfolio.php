@@ -20,7 +20,7 @@ if (!($_SESSION['loggedIn']))
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cryptomania</a>
+            <a class="navbar-brand" href="javascript:void(0);">Cryptomania</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,39 +35,42 @@ if (!($_SESSION['loggedIn']))
                 <li class="nav-item">
                     <a class="nav-link" href="exchanges.php">Exchanges</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.php">News</a>
+                </li>
             </ul>
             </div>
         </div>
     </nav>
 
-		<!-- Table to insert the fetched/saved crypto data into -->
-		<table class="table" id="crypto-folio-table">
-			<thead>
-				<tr>
-					<th class="row-crypto">Id</th>
-					<th class="row-crypto">Bought on</th>
-					<th class="row-crypto">Name</th>
-					<th class="row-crypto">Price</th>
-					<th class="row-crypto">Amount</th>
-					
-					<th class="row-crypto">Total</th>
-					<th class="row-crypto">Save</th>
-					<th class="row-crypto">Delete</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td id="total-value"></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		</table>
+	<!-- Table to insert the fetched/saved crypto data into -->
+	<table class="table" id="crypto-folio-table">
+		<thead>
+			<tr>
+				<th class="row-crypto">Id</th>
+				<th class="row-crypto">Bought on</th>
+				<th class="row-crypto">Name</th>
+				<th class="row-crypto">Price</th>
+				<th class="row-crypto">Amount</th>
+				
+				<th class="row-crypto">Total</th>
+				<th class="row-crypto">Save</th>
+				<th class="row-crypto">Delete</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td id="total-value"></td>
+				<td></td>
+			</tr>
+		</tfoot>
+	</table>
 	</div>
 
 	<!-- Template to load the previously fetched data into -->

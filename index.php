@@ -19,7 +19,7 @@ if (!($_SESSION['loggedIn']))
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #105469 !important;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cryptomania</a>
+            <a class="navbar-brand" href="javascript:void(0);">Cryptomania</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,6 +33,9 @@ if (!($_SESSION['loggedIn']))
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="exchanges.php">Exchanges</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.php">News</a>
                 </li>
             </ul>
             </div>
